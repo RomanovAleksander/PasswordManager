@@ -5,7 +5,7 @@ node_js:
 
 branches:
   only:
-    - master
+    - main
 
 cache:
   directories:
@@ -24,4 +24,4 @@ deploy:
   keep_history: true
   local_dir: build
   on:
-    branch: master
+    branch: main
