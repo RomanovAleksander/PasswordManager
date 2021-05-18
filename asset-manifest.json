@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/PasswordManager/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/PasswordManager/static/js/main.b858e2e3.chunk.js",
-    "main.js.map": "/PasswordManager/static/js/main.b858e2e3.chunk.js.map",
+    "main.js": "/PasswordManager/static/js/main.009e9d04.chunk.js",
+    "main.js.map": "/PasswordManager/static/js/main.009e9d04.chunk.js.map",
     "runtime-main.js": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js",
     "runtime-main.js.map": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js.map",
     "static/js/2.78a64ba4.chunk.js": "/PasswordManager/static/js/2.78a64ba4.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.1fe1ad4a.js",
     "static/js/2.78a64ba4.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.b858e2e3.chunk.js"
+    "static/js/main.009e9d04.chunk.js"
   ]
 }
