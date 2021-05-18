@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/PasswordManager/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/PasswordManager/static/js/main.b4580cc4.chunk.js",
-    "main.js.map": "/PasswordManager/static/js/main.b4580cc4.chunk.js.map",
+    "main.css": "/PasswordManager/static/css/main.e8553021.chunk.css",
+    "main.js": "/PasswordManager/static/js/main.06c0287c.chunk.js",
+    "main.js.map": "/PasswordManager/static/js/main.06c0287c.chunk.js.map",
     "runtime-main.js": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js",
     "runtime-main.js.map": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js.map",
-    "static/js/2.78a64ba4.chunk.js": "/PasswordManager/static/js/2.78a64ba4.chunk.js",
-    "static/js/2.78a64ba4.chunk.js.map": "/PasswordManager/static/js/2.78a64ba4.chunk.js.map",
+    "static/css/2.c53d898a.chunk.css": "/PasswordManager/static/css/2.c53d898a.chunk.css",
+    "static/js/2.e276c2ee.chunk.js": "/PasswordManager/static/js/2.e276c2ee.chunk.js",
+    "static/js/2.e276c2ee.chunk.js.map": "/PasswordManager/static/js/2.e276c2ee.chunk.js.map",
     "index.html": "/PasswordManager/index.html",
-    "static/css/main.9d5b29c0.chunk.css.map": "/PasswordManager/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.78a64ba4.chunk.js.LICENSE.txt": "/PasswordManager/static/js/2.78a64ba4.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/PasswordManager/static/media/logo.103b5fa1.svg"
+    "static/css/2.c53d898a.chunk.css.map": "/PasswordManager/static/css/2.c53d898a.chunk.css.map",
+    "static/css/main.e8553021.chunk.css.map": "/PasswordManager/static/css/main.e8553021.chunk.css.map",
+    "static/js/2.e276c2ee.chunk.js.LICENSE.txt": "/PasswordManager/static/js/2.e276c2ee.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/PasswordManager/static/media/fontawesome-webfont.f691f37e.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.1fe1ad4a.js",
-    "static/js/2.78a64ba4.chunk.js",
-    "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.b4580cc4.chunk.js"
+    "static/css/2.c53d898a.chunk.css",
+    "static/js/2.e276c2ee.chunk.js",
+    "static/css/main.e8553021.chunk.css",
+    "static/js/main.06c0287c.chunk.js"
   ]
 }

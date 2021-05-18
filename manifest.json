@@ -1,6 +1,7 @@
 {
-  "short_name": "PM",
+  "short_name": "Password Manager",
   "name": "Password Manager",
+  "description": "Free cross-platform password manager",
   "icons": [
     {
       "src": "favicon.ico",
