@@ -1,15 +1,13 @@
 {
   "files": {
     "main.css": "/PasswordManager/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/PasswordManager/static/js/main.c3b20fd8.chunk.js",
-    "main.js.map": "/PasswordManager/static/js/main.c3b20fd8.chunk.js.map",
+    "main.js": "/PasswordManager/static/js/main.b858e2e3.chunk.js",
+    "main.js.map": "/PasswordManager/static/js/main.b858e2e3.chunk.js.map",
     "runtime-main.js": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js",
     "runtime-main.js.map": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js.map",
     "static/js/2.78a64ba4.chunk.js": "/PasswordManager/static/js/2.78a64ba4.chunk.js",
     "static/js/2.78a64ba4.chunk.js.map": "/PasswordManager/static/js/2.78a64ba4.chunk.js.map",
     "index.html": "/PasswordManager/index.html",
-    "service-worker.js": "/PasswordManager/service-worker.js",
-    "service-worker.js.map": "/PasswordManager/service-worker.js.map",
     "static/css/main.9d5b29c0.chunk.css.map": "/PasswordManager/static/css/main.9d5b29c0.chunk.css.map",
     "static/js/2.78a64ba4.chunk.js.LICENSE.txt": "/PasswordManager/static/js/2.78a64ba4.chunk.js.LICENSE.txt",
     "static/media/logo.103b5fa1.svg": "/PasswordManager/static/media/logo.103b5fa1.svg"
@@ -18,6 +16,6 @@
     "static/js/runtime-main.1fe1ad4a.js",
     "static/js/2.78a64ba4.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.c3b20fd8.chunk.js"
+    "static/js/main.b858e2e3.chunk.js"
   ]
 }
