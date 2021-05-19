@@ -109,7 +109,7 @@ const Generator = ({ closeGenerator }) => {
           <div className="generator__close" onClick={() => closeGenerator()}>X</div>
           <h2 className='generator__header'>Password Generator</h2>
           <div className='generator__password'>
-            <h3>{password}</h3>
+            <div>{password}</div>
             <button onClick={handleCopyPassword} className='copy__btn'>
               <i className='fa fa-clipboard'> </i>
             </button>
@@ -129,7 +129,7 @@ const Generator = ({ closeGenerator }) => {
           </div>
 
           <div className='form-group'>
-            <label htmlFor='uppercase-letters'>Include Uppercase Letters</label>
+            <span>Include Uppercase Letters</span>
             <input
               checked={includeUppercase}
               onChange={(e) => setIncludeUppercase(e.target.checked)}
@@ -137,10 +137,11 @@ const Generator = ({ closeGenerator }) => {
               id='uppercase-letters'
               name='uppercase-letters'
             />
+            <label htmlFor='uppercase-letters'> </label>
           </div>
 
           <div className='form-group'>
-            <label htmlFor='lowercase-letters'>Include Lowercase Letters</label>
+            <span>Include Lowercase Letters</span>
             <input
               checked={includeLowercase}
               onChange={(e) => setIncludeLowercase(e.target.checked)}
@@ -148,10 +149,12 @@ const Generator = ({ closeGenerator }) => {
               id='lowercase-letters'
               name='lowercase-letters'
             />
+            <label htmlFor='lowercase-letters'> </label>
+
           </div>
 
           <div className='form-group'>
-            <label htmlFor='include-numbers'>Include Numbers</label>
+            <span>Include Numbers</span>
             <input
               checked={includeNumbers}
               onChange={(e) => setIncludeNumbers(e.target.checked)}
@@ -159,10 +162,11 @@ const Generator = ({ closeGenerator }) => {
               id='include-numbers'
               name='include-numbers'
             />
+            <label htmlFor='include-numbers'> </label>
           </div>
 
           <div className='form-group'>
-            <label htmlFor='include-symbols'>Include Symbols</label>
+            <span>Include Symbols</span>
             <input
               checked={includeSymbols}
               onChange={(e) => setIncludeSymbols(e.target.checked)}
@@ -170,6 +174,7 @@ const Generator = ({ closeGenerator }) => {
               id='include-symbols'
               name='include-symbols'
             />
+            <label htmlFor='include-symbols'> </label>
           </div>
 
           <button onClick={handleGeneratePassword} className='generator__btn'>
