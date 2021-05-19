@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { signInRequest, signInSuccess, signInError } from '../../actions/signin/actions';
 import { LocalStorageService }  from '../../services';
 import './loginForm.css';
+import {FormButtons} from "../FormButtons";
 
 class LoginForm extends React.Component {
   constructor() {
     super();
     this.state = {
+      button: 'new',
       password: '',
       isPassword: false
     }
@@ -19,34 +21,39 @@ class LoginForm extends React.Component {
     });
   };
 
+  onButtonChange = (button) => {
+    this.setState({ button });
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
     const { password } = this.state;
     const { signInRequest, signInSuccess, signInError } = this.props;
 
-    signInRequest();
-    signInSuccess(password);
-    LocalStorageService.setItem('userData', password);
-    console.log(password)
+    const { button } = this.state;
+
+    switch (button) {
+      case 'open':
+        console.log('open file')
+        break;
+      case 'new':
+        signInRequest();
+        signInSuccess(password);
+        LocalStorageService.setItem('userData', password);
+        console.log(password)
+        break;
+      case 'generate':
+        break;
+
+      default:
+        console.log('default')
+    }
   };
 
   render() {
     return (
         <form className="open" onSubmit={this.onSubmit}>
-          <div className="open__icons">
-            <div className="open__icon open__icon-open" tabIndex="1" id="open__icon-open">
-              <i className="fa fa-lock open__icon-i"></i>
-              <div className="open__icon-text">Open</div>
-            </div>
-            <div className="open__icon open__icon-new" tabIndex="2" id="open__icon-new">
-              <i className="fa fa-plus open__icon-i"></i>
-              <div className="open__icon-text">New</div>
-            </div>
-            <div className="open__icon open__icon-generate" tabIndex="21" id="open__icon-generate">
-              <i className="fa fa-bolt open__icon-i"></i>
-              <div className="open__icon-text">Generate</div>
-            </div>
-          </div>
+          <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']}/>
           <div className="open__pass-area">
             <div className="open__pass-field-wrap">
               <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password"
