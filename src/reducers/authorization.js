@@ -4,7 +4,7 @@ import {
   SIGN_IN_FAILURE,
   SIGN_OUT
 } from '../actions/signin/types';
-import { LocalStorageService } from '../services';
+// import { LocalStorageService } from '../services';
 
 const initialState = {
   password: null,

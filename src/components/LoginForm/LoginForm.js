@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { password } = this.state;
-    const { signInRequest, signInSuccess, signInError } = this.props;
+    const { signInRequest, signInSuccess } = this.props;
 
     const { button } = this.state;
 
