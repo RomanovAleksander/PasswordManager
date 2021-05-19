@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <div className="app__body">
         {isOpen ? <Generator /> : null}
-        {/*{isAuthorized ? <Generator /> : <LoginForm />}*/}
+        {isAuthorized ? <div>Main Page</div> : <LoginForm />}
         <LoginForm />
       </div>
     )

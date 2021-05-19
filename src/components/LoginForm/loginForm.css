@@ -73,7 +73,7 @@
   color: yellow;
 }
 
-.open__icon:nth-child(3):hover input:checked+label,  .open__icon:nth-child(3):hover input:checked+label .open__icon-text{
+.open__icon:nth-child(3):active input:checked+label,  .open__icon:nth-child(3):active input:checked+label .open__icon-text{
   color: yellow;
 }
 
