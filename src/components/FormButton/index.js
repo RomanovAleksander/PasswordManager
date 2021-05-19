@@ -1,1 +1,3 @@
-export { FormButton } from './FormButton';
+import FormButton from './FormButton';
+
+export { FormButton };

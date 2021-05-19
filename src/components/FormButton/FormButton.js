@@ -1,6 +1,8 @@
 import React from 'react';
+import {openGenerator} from "../../actions/generator/actions";
+import {connect} from "react-redux";
 
-export class FormButton extends React.Component {
+class FormButton extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -34,11 +36,25 @@ export class FormButton extends React.Component {
         <input id={button} type="radio" value={button} name="category"
                onChange={this.selectButton} required
         />
-          <label className="" htmlFor={button}>
-            <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
-            <div className="open__icon-text">{button}</div>
-          </label>
+        {
+          button === 'generate' ?
+            <label className="" htmlFor={button} onClick={() => this.props.openGenerator()}>
+              <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
+              <div className="open__icon-text">{button}</div>
+            </label>
+          :
+            <label className="" htmlFor={button}>
+              <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
+              <div className="open__icon-text">{button}</div>
+            </label>
+        }
       </>
     )
   }
 }
+
+const mapDispatchToProps = {
+  openGenerator
+};
+
+export default connect(null, mapDispatchToProps)(FormButton);

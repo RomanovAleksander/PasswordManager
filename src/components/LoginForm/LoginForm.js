@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signInRequest, signInSuccess, signInError } from '../../actions/signin/actions';
+import { openGenerator, closeGenerator } from '../../actions/generator/actions';
 import { LocalStorageService }  from '../../services';
 import './loginForm.css';
 import {FormButtons} from "../FormButtons";
@@ -28,7 +29,7 @@ class LoginForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { password } = this.state;
-    const { signInRequest, signInSuccess } = this.props;
+    const { signInRequest, signInSuccess, openGenerator } = this.props;
 
     const { button } = this.state;
 
@@ -43,6 +44,7 @@ class LoginForm extends React.Component {
         console.log(password)
         break;
       case 'generate':
+        openGenerator();
         break;
 
       default:
@@ -85,7 +87,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   signInRequest,
   signInSuccess,
-  signInError
+  signInError,
+  openGenerator,
+  closeGenerator
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

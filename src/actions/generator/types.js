@@ -1,0 +1,2 @@
+export const OPEN_GENERATOR = 'OPEN_GENERATOR';
+export const CLOSE_GENERATOR = 'CLOSE_GENERATOR';

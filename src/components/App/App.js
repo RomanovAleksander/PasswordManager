@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { LoginForm } from '../LoginForm';
+import {Generator} from "../Generator";
 
 class App extends React.Component {
   constructor() {
@@ -12,10 +13,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { isAuthorized } = this.props;
+    const { isAuthorized, isOpen } = this.props;
     return (
       <div className="app__body">
-        {isAuthorized ? <div>Hello</div> : <LoginForm />}
+        {isOpen ? <Generator /> : null}
+        {/*{isAuthorized ? <Generator /> : <LoginForm />}*/}
+        <LoginForm />
       </div>
     )
   }
@@ -24,6 +27,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isAuthorized: state.userData.isAuthorized,
+    isOpen: state.generator.isOpen
   }
 };
 

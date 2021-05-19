@@ -50,7 +50,6 @@
 
 .open__icon input {
   position: absolute;
-  left: 0;
   z-index: -1;
   width: 1rem;
   height: 1.25rem;
@@ -70,7 +69,11 @@
   flex-direction: column;
 }
 
-.open__icon input:checked+label,  .open__icon input:checked+label .open__icon-text{
+.open__icon:nth-child(-n+2) input:checked+label,  .open__icon:nth-child(-n+2) input:checked+label .open__icon-text{
+  color: yellow;
+}
+
+.open__icon:nth-child(3):hover input:checked+label,  .open__icon:nth-child(3):hover input:checked+label .open__icon-text{
   color: yellow;
 }
 
