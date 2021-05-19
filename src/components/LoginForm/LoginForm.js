@@ -5,6 +5,8 @@ import { openGenerator, closeGenerator } from '../../actions/generator/actions';
 import { LocalStorageService }  from '../../services';
 import './loginForm.css';
 import {FormButtons} from "../FormButtons";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -29,7 +31,7 @@ class LoginForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { password } = this.state;
-    const { signInRequest, signInSuccess, openGenerator } = this.props;
+    const { signInRequest, signInSuccess } = this.props;
 
     const { button } = this.state;
 
@@ -44,7 +46,16 @@ class LoginForm extends React.Component {
         console.log(password)
         break;
       case 'generate':
-        openGenerator();
+        console.log('err file');
+        toast.error('Select the file or create', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
         break;
 
       default:
@@ -66,11 +77,19 @@ class LoginForm extends React.Component {
                 <i className="fa fa-level-down rotate-90 open__pass-enter-btn-icon-enter"></i>
                 <i className="fa fa-fingerprint open__pass-enter-btn-icon-touch-id"></i>
               </button>
-              {/*<div className="open__pass-opening-icon">*/}
-              {/*  <i className="fa fa-spinner spin"></i>*/}
-              {/*</div>*/}
             </div>
           </div>
+          <ToastContainer
+            position='top-center'
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </form>
     )
   }

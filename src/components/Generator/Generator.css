@@ -95,6 +95,7 @@
   line-height: 1;
   transition: 0.15s ease;
   cursor: pointer;
+  border-radius: var(--block-border-radius);
 }
 
 .form-group {

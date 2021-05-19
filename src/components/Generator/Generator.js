@@ -27,7 +27,7 @@ const Generator = ({ closeGenerator }) => {
       !includeNumbers &&
       !includeSymbols
     ) {
-      notify('You must Select atleast one option', true)
+      notify('You must Select at least one option', true)
     }
     let characterList = ''
 
@@ -82,7 +82,7 @@ const Generator = ({ closeGenerator }) => {
         progress: undefined,
       })
     } else {
-      toast(message, {
+      toast.dark(message, {
         position: 'top-center',
         autoClose: 2000,
         hideProgressBar: false,
@@ -182,7 +182,7 @@ const Generator = ({ closeGenerator }) => {
           </button>
           <ToastContainer
             position='top-center'
-            autoClose={3000}
+            autoClose={2000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
