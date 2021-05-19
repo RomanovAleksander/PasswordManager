@@ -70,11 +70,11 @@
 }
 
 .open__icon:nth-child(-n+2) input:checked+label,  .open__icon:nth-child(-n+2) input:checked+label .open__icon-text{
-  color: yellow;
+  color: #317ef6
 }
 
 .open__icon:nth-child(3):active input:checked+label,  .open__icon:nth-child(3):active input:checked+label .open__icon-text{
-  color: yellow;
+  color: #317ef6
 }
 
 .open__pass-area {
