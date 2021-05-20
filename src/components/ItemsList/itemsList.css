@@ -1,0 +1,35 @@
+.list__items-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.list__item {
+    left: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    top: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.list__item--active, .list__item--active:hover {
+    cursor: default;
+    background-color: var(--selected-item-color);
+    color: var(--selected-item-text-color);
+}
+
+.list__item--active .list__item-descr {
+    color: var(--selected-item-text-color);
+}
+
+.list__item:not(.list__item--table) {
+    padding: .5em 1em;
+    margin: 0 .75em;
+    width: calc(100% - 1.5em);
+    border-radius: var(--block-border-radius);
+}
+
+.list__item--expired .list__item-descr, .list__item--expired .list__item-title {
+    /*text-decoration: line-through;*/
+}

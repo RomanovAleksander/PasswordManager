@@ -1,0 +1,21 @@
+.list__item-title {
+    margin-left: 2px;
+}
+
+.list__item-icon {
+    margin-right: .2em;
+    width: 14px;
+    height: 14px;
+    vertical-align: top;
+    position: relative;
+    top: -1px;
+}
+
+.list__item-descr {
+    font-size: .8em;
+    color: var(--muted-color);
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: .375em;
+}

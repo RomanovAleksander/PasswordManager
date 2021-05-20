@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './dataList.css';
 import {ListHeader} from "../ListHeader";
+import {ItemsList} from "../ItemsList";
 
 class DataList extends React.Component {
   constructor() {
@@ -12,14 +13,14 @@ class DataList extends React.Component {
   }
 
   render() {
-    const {isAuthorized, isOpen} = this.props;
+    const {data} = this.props;
     return (
       <div className="app-list-wrap">
         <div className="app__list show">
           <div className="list">
             <ListHeader/>
             <div className="list__items" data-baron-v-id="2">
-              {emptyBlock()}
+              {data.length ? <ItemsList /> : emptyBlock()}
             </div>
           </div>
         </div>
@@ -42,8 +43,7 @@ const emptyBlock = () => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthorized: state.userData.isAuthorized,
-    isOpen: state.generator.isOpen
+    data: state.dataList.data
   }
 };
 

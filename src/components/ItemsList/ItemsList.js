@@ -1,22 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {ItemsListItem} from "../ItemsListItem";
+import {viewDetails} from "../../actions/data/actions";
 import './itemsList.css';
 
-const ItemsList = ({ books, onView }) => {
+const ItemsList = ({ items, onView, activeItem }) => {
+  const isActive = (id, activeItem) => {
+    if (id === activeItem) return 'list__item list__item--active'
+    else return 'list__item'
+  };
+
+  const activated = (id, activeItem, onView) => {
+    switch (activeItem) {
+      case id:
+        break;
+
+      default:
+        return onView(id)
+    }
+  }
+
   return (
-    <ul className="book-list">
+    <div className="list__list list__items-container">
       {
-        books.map((book) => {
+        items.map((item) => {
           return (
-            <li key={book.id}>
-              <BookListItem
-                book={book}
-                onView={() => onView(book.id)} />
-            </li>
+            <div className={isActive(item.id, activeItem)}
+                 key={item.id}
+                 onClick={() => activated(item.id, activeItem, onView)}
+            >
+              <ItemsListItem
+                item={item}
+                activeItem={activeItem}
+              />
+            </div>
           )
         })
       }
-    </ul>
+    </div>
   )
 };
 
@@ -33,29 +54,27 @@ class ItemsListContainer extends React.Component {
 
   render() {
     const {
-      books, loading, searchText,
-      filterPrice, onView, isAuthorized,
-      error
+      data, searchText, viewDetails, activeItem
     } = this.props;
 
-    if (books) {
-      const visibleBooks = this.search(books, searchText);
-
+      const visibleItems = this.search(data, searchText);
       return <ItemsList
-        onView={onView}
-        books={visibleBooks} />;
-    }
+        onView={(id) => viewDetails(id)}
+        activeItem={activeItem}
+        items={visibleItems} />;
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-
+    data: state.dataList.data,
+    searchText: state.dataList.searchText,
+    activeItem: state.dataList.activeItem,
   }
 };
 
 const mapDispatchToProps = {
-
+  viewDetails
 };
 
 export default connect(

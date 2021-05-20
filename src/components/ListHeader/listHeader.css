@@ -31,7 +31,6 @@ input:not([type]).input-search, input[type=password].input-search, input[type=te
     color: var(--muted-color);
     position: absolute;
     top: .53em;
-    cursor: pointer;
 }
 
 .list__search-btn-new {
