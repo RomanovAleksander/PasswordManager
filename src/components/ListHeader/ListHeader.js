@@ -26,8 +26,7 @@ const ListHeader = ({userSignOut, openGenerator}) => {
 }
 
 const mapDispatchToProps = {
-  userSignOut,
-  openGenerator
+
 };
 
 export default connect(null, mapDispatchToProps)(ListHeader);

@@ -30,3 +30,46 @@
     flex-direction: column;
     overflow: hidden;
 }
+
+/* List */
+.list__items {
+    position: relative;
+}
+
+.empty-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.muted-color {
+    color: var(--muted-color);
+}
+
+.empty-block__icon {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+.empty-block__text, .empty-block__title {
+    padding: 0 1em;
+}
+
+.empty-block h1 {
+    font-size: 2.44140625rem;
+    line-height: 1.2;
+    margin: 0 0 .75em;
+}
+
+.empty-block p {
+    margin: 0 0 .75em;
+}
+
+

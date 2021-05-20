@@ -13,14 +13,14 @@ class LoginForm extends React.Component {
     super();
     this.state = {
       button: 'new',
-      password: '',
+      masterPassword: '',
       isPassword: false
     }
   }
 
   onChange = ({ target }) => {
     this.setState({
-      password: target.value
+      masterPassword: target.value
     });
   };
 
@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { password } = this.state;
+    const { masterPassword } = this.state;
     const { signInRequest, signInSuccess } = this.props;
 
     const { button } = this.state;
@@ -41,9 +41,9 @@ class LoginForm extends React.Component {
         break;
       case 'new':
         signInRequest();
-        signInSuccess(password);
-        LocalStorageService.setItem('userData', password);
-        console.log(password)
+        signInSuccess(masterPassword);
+        LocalStorageService.setItem('userData', masterPassword);
+        console.log(masterPassword)
         break;
       case 'generate':
         console.log('err file');
