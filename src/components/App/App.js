@@ -4,6 +4,7 @@ import './App.css';
 import { LoginForm } from '../LoginForm';
 import {Generator} from "../Generator";
 import {Footer} from "../Footer";
+import {DataList} from "../DataList";
 
 class App extends React.Component {
   constructor() {
@@ -19,7 +20,7 @@ class App extends React.Component {
       <>
         <div className="app__body">
           {isOpen ? <Generator/> : null}
-          {isAuthorized ? null : <LoginForm/>}
+          {isAuthorized ? <DataList /> : <LoginForm/>}
         </div>
         {isAuthorized ? <Footer/> : null}
       </>

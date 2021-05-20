@@ -1,0 +1,49 @@
+.list__search {
+    padding: .75em;
+}
+
+.list__search-header {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.list__search-field-wrap {
+    flex: 1;
+    position: relative;
+    margin-right: .75em;
+}
+
+.list__search-field {
+    width: 100%;
+    height: 2.5em;
+}
+
+input:not([type]).input-search, input[type=password].input-search, input[type=text].input-search, textarea.input-search {
+    padding-left: 2.9em;
+    padding-right: 1.8em;
+}
+
+.list__search-icon-search {
+    left: .6em;
+    color: var(--muted-color);
+    position: absolute;
+    top: .53em;
+    cursor: pointer;
+}
+
+.list__search-btn-new {
+    cursor: pointer;
+    text-align: center;
+    border-radius: var(--block-border-radius);
+    transition: color .15s ease;
+    height: 2.5em;
+    line-height: 2.3em;
+    padding: 0 1em;
+}
+
+.list__search-btn-new>i {
+    vertical-align: middle;
+}
