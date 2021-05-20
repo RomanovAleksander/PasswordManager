@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import { LoginForm } from '../LoginForm';
 import {Generator} from "../Generator";
+import {Footer} from "../Footer";
 
 class App extends React.Component {
   constructor() {
@@ -15,11 +16,14 @@ class App extends React.Component {
   render() {
     const { isAuthorized, isOpen } = this.props;
     return (
-      <div className="app__body">
-        {isOpen ? <Generator /> : null}
-        {isAuthorized ? <div>Main Page</div> : <LoginForm />}
-      </div>
-    )
+      <>
+        <div className="app__body">
+          {isOpen ? <Generator/> : null}
+          {isAuthorized ? null : <LoginForm/>}
+        </div>
+        {isAuthorized ? <Footer/> : null}
+      </>
+    );
   }
 }
 
