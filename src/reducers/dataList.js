@@ -3,16 +3,16 @@ import {
   FETCH_DATA_REQUEST,
   FETCH_DATA_SUCCESS,
   SEARCH_DATA,
-  VIEW_DETAILS
+  VIEW_DETAILS,
+  CREATE_ITEM
 } from '../actions/data/types';
+import { LocalStorageService } from '../services';
 
 const initialState = {
   data: [
     {title: 'One', id: 1, user: '1234'},
     {title: 'Two', id: 2, user: '1234'},
     {title: 'Three', id: 3, user: '1234'},
-
-
   ],
   activeItem: 1,
   searchText: '',
@@ -20,7 +20,17 @@ const initialState = {
   error: null
 };
 
-export const dataList = (state = initialState, action) => {
+export const dataList = (state, action) => {
+  if (state === undefined) {
+    if (localStorage.data) {
+      return {
+        data: LocalStorageService.getItem('Data'),
+      }
+    } else {
+      return initialState
+    }
+  }
+
   const { type, payload } = action;
   switch (type) {
     case FETCH_DATA_REQUEST:
@@ -54,6 +64,17 @@ export const dataList = (state = initialState, action) => {
       return {
         ...state,
         activeItem: payload.activeItem
+      };
+    case CREATE_ITEM:
+      const newItem = {
+        title: '(no title)',
+        id: state.data.length + 1,
+        user: '-'
+      };
+      return {
+        ...state,
+        data: [newItem, ...state.data],
+        activeItem: newItem.id
       };
 
     default:

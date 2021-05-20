@@ -21,6 +21,7 @@
 
 .list {
     justify-content: flex-start;
+    overflow: hidden;
 }
 
 .list, .list__items {
@@ -28,12 +29,29 @@
     display: flex;
     align-items: stretch;
     flex-direction: column;
-    overflow: hidden;
 }
 
-/* List */
 .list__items {
     position: relative;
+    overflow: auto;
+}
+
+.list__items::-webkit-scrollbar {
+    width: 7px;
+}
+
+.list__items::-webkit-scrollbar-thumb {
+    background: initial;
+    border-radius: 3px;
+    pointer-events: auto;
+}
+
+.list__items:hover::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-background-color);
+}
+
+.list__items::-webkit-scrollbar-thumb:hover {
+    background-color: var(--clickable-on-secondary-color);
 }
 
 .empty-block {

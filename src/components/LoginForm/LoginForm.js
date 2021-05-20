@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
       case 'new':
         signInRequest();
         signInSuccess(masterPassword);
-        LocalStorageService.setItem('userData', masterPassword);
+        LocalStorageService.setItem('MP', masterPassword);
         console.log(masterPassword)
         break;
       case 'generate':

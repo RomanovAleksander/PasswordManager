@@ -3,7 +3,8 @@ import {
   FETCH_DATA_REQUEST,
   FETCH_DATA_SUCCESS,
   SEARCH_DATA,
-  VIEW_DETAILS
+  VIEW_DETAILS,
+  CREATE_ITEM
 } from './types';
 
 const dataRequested = () => {
@@ -40,10 +41,15 @@ const viewDetails = (activeItem) => ({
   }
 });
 
+const createItem = () => ({
+  type: CREATE_ITEM
+});
+
 export {
   dataRequested,
  dataLoaded,
  dataError,
   searchData,
-  viewDetails
+  viewDetails,
+  createItem
 };

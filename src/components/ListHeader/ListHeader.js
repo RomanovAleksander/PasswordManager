@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './listHeader.css';
-import {searchData} from "../../actions/data/actions";
+import {searchData, createItem} from "../../actions/data/actions";
 
-const ListHeader = ({searchData, searchText}) => {
+const ListHeader = ({searchData, searchText, createItem}) => {
   const onSearchChange = ({ target }) => {
     const searchText = target.value;
 
@@ -24,7 +24,7 @@ const ListHeader = ({searchData, searchText}) => {
                 <i className="fa fa-search"> </i>
               </div>
             </div>
-            <div className="list__search-btn-new " data-title="Add New">
+            <div className="list__search-btn-new " data-title="Add New" onClick={() => createItem()}>
               <i className="fa fa-plus"> </i>
             </div>
           </div>
@@ -40,7 +40,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  searchData
+  searchData,
+  createItem
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListHeader);

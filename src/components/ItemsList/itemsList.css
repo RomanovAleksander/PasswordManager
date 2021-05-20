@@ -13,6 +13,11 @@
     cursor: pointer;
 }
 
+.list__item i {
+    position: relative;
+    top: 2px;
+}
+
 .list__item--active, .list__item--active:hover {
     cursor: default;
     background-color: var(--selected-item-color);
