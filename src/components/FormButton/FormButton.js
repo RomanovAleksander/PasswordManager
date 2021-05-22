@@ -38,7 +38,7 @@ class FormButton extends React.Component {
         />
         {
           button === 'generate' ?
-            <label className="" htmlFor={button} onClick={() => this.props.openGenerator()}>
+            <label className="" onClick={() => this.props.openGenerator()}>
               <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
               <div className="open__icon-text">{button}</div>
             </label>
