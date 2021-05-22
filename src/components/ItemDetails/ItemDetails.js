@@ -9,10 +9,6 @@ import { toast, ToastContainer } from 'react-toastify';
 
 
 class ItemDetails extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
