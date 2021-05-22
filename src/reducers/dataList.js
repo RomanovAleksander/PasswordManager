@@ -5,57 +5,35 @@ import {
   SEARCH_DATA,
   VIEW_DETAILS,
   CREATE_ITEM,
-  REMOVE_ITEM
+  REMOVE_ITEM,
+  CHANGE_ITEM
 } from '../actions/data/types';
 import { LocalStorageService } from '../services';
 
 const initialState = {
   data: [
-    // {
-    //   title: 'Facebook',
-    //   id: 1621702604559.998,
-    //   user: 'smith',
-    //   password: '1234',
-    //   website: 'facebook.com',
-    //   notes: '',
-    //   tags: '',
-    //   group: 'Internet',
-    //   created: 'Sep 6, 2015, 7:29:30 PM',
-    //   updated: 'May 22, 2021, 5:46:06 PM',
-    //   file: 'New'
-    // },
-    // {
-    //   title: 'Two',
-    //   id: 2,
-    //   user: '1234',
-    //   password: '1234',
-    //   website: '1234',
-    //   notes: '1234',
-    //   tags: '1234',
-    //   group: '1234',
-    //   created: '1234',
-    //   updated: '1234',
-    //   file: '1234'
-    // },
-    // {
-    //   title: 'Threee',
-    //   id: 3,
-    //   user: '1234',
-    //   password: '1234',
-    //   website: '1234',
-    //   notes: '1234',
-    //   tags: '1234',
-    //   group: '1234',
-    //   created: '1234',
-    //   updated: '1234',
-    //   file: '1234'
-    // },
+    {
+      title: 'Facebook',
+      id: 1621702604559.998,
+      user: 'smith',
+      password: '1234',
+      website: 'facebook.com',
+      notes: '',
+      tags: '',
+      group: 'Internet',
+      created: 'Sep 6, 2015, 7:29:30 PM',
+      updated: 'May 22, 2021, 5:46:06 PM',
+      file: 'New'
+    },
   ],
   activeItem: 1621702604559.998,
+  activeItemIndex: 0,
   searchText: '',
   loading: true,
   error: null
 };
+
+const findItemIndex = (arr, id) => arr.findIndex((item) => item.id === id);
 
 export const dataList = (state, action) => {
   if (state === undefined) {
@@ -65,6 +43,7 @@ export const dataList = (state, action) => {
         ...initialState,
         data: localStorageData,
         activeItem: localStorageData[0].id,
+        activeItemIndex: 0
       }
     } else {
       return initialState
@@ -103,7 +82,8 @@ export const dataList = (state, action) => {
     case VIEW_DETAILS:
       return {
         ...state,
-        activeItem: payload.activeItem
+        activeItem: payload.activeItem,
+        activeItemIndex: findItemIndex(state.data, payload.activeItem)
       };
     case REMOVE_ITEM:
       const updateData = state.data.filter((item) => item.id !== payload);
@@ -118,7 +98,8 @@ export const dataList = (state, action) => {
       return {
         ...state,
         data: updateData,
-        activeItem: isArrayEmpty()
+        activeItem: isArrayEmpty(),
+        activeItemIndex: updateData.length === 0 ? null : 0
       };
     case CREATE_ITEM:
       const newItem = {
@@ -137,8 +118,25 @@ export const dataList = (state, action) => {
       return {
         ...state,
         data: [newItem, ...state.data],
-        activeItem: newItem.id
+        activeItem: newItem.id,
+        activeItemIndex: findItemIndex([newItem, ...state.data], newItem.id)
       };
+    case CHANGE_ITEM:
+      const updatedItemsList = [
+        ...state.data.slice(0, state.activeItemIndex),
+        {
+          ...state.data[state.activeItemIndex],
+          ...payload
+        }
+        ,
+        ...state.data.slice(state.activeItemIndex + 1)
+      ]
+
+      return {
+        ...state,
+       data: updatedItemsList
+      };
+
 
     default:
       return state;

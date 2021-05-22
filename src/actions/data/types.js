@@ -5,3 +5,5 @@ export const SEARCH_DATA = 'SEARCH_DATA';
 export const VIEW_DETAILS = 'VIEW_DETAILS';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const CHANGE_ITEM = 'CHANGE_ITEM';
+

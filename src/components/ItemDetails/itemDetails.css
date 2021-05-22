@@ -8,6 +8,16 @@
     width: 100%;
 }
 
+.details input {
+    padding: 0;
+    border: 1px solid transparent;
+    transition: all 0.15s ease-out;
+}
+
+.details input:hover {
+    border: 1px solid gray;
+}
+
 .details__header {
     display: flex;
     align-items: flex-start;
@@ -34,14 +44,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     border-radius: var(--input-border-radius);
-    border: 1px solid transparent;
     height: 42px;
     line-height: 40px;
     white-space: nowrap;
 }
 
-.details__header h1 {
+.details__header input {
     font-size: 2.44140625rem;
+    font-weight: bold;
 }
 
 .details__header-icon {
@@ -177,4 +187,16 @@ a {
     color: var(--muted-color);
     align-self: flex-end;
     margin-right: 10px;
+}
+
+.Toastify__toast {
+    font-size: 1.3rem !important;
+    text-align: center;
+    border-radius: var(--input-border-radius);
+}
+
+.Toastify__toast--dark {
+    background-color: var(--secondary-background-color);
+    border-top: 1px solid var(--light-border-color);
+    min-height: 0;
 }

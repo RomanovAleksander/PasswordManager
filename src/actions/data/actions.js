@@ -5,7 +5,8 @@ import {
   SEARCH_DATA,
   VIEW_DETAILS,
   CREATE_ITEM,
-  REMOVE_ITEM
+  REMOVE_ITEM,
+  CHANGE_ITEM
 } from './types';
 
 const dataRequested = () => {
@@ -46,17 +47,23 @@ const createItem = () => ({
   type: CREATE_ITEM
 });
 
-const removeItem = (item) => ({
+const removeItem = (id) => ({
   type: REMOVE_ITEM,
-  payload: item.id
+  payload: id
+});
+
+const changeItem = (values) => ({
+  type: CHANGE_ITEM,
+  payload: values
 });
 
 export {
   dataRequested,
- dataLoaded,
- dataError,
+  dataLoaded,
+  dataError,
   searchData,
   viewDetails,
   createItem,
-  removeItem
+  removeItem,
+  changeItem
 };

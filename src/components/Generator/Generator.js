@@ -11,6 +11,7 @@ import { COPY_SUCCESS } from '../../utils/message';
 import './Generator.css';
 import {closeGenerator} from "../../actions/generator/actions";
 import {connect} from "react-redux";
+import { copyToClipboard } from '../../utils/copyToClipboard';
 
 const Generator = ({ closeGenerator }) => {
   const [password, setPassword] = useState('')
@@ -61,15 +62,6 @@ const Generator = ({ closeGenerator }) => {
     return password
   }
 
-  const copyToClipboard = () => {
-    const newTextArea = document.createElement('textarea')
-    newTextArea.innerText = password
-    document.body.appendChild(newTextArea)
-    newTextArea.select()
-    document.execCommand('copy')
-    newTextArea.remove()
-  }
-
   const notify = (message, hasError = false) => {
     if (hasError) {
       toast.error(message, {
@@ -82,10 +74,10 @@ const Generator = ({ closeGenerator }) => {
         progress: undefined,
       })
     } else {
-      toast.dark(message, {
+      toast.success(message, {
         position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
+        autoClose: 1000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -98,7 +90,7 @@ const Generator = ({ closeGenerator }) => {
     if (password === '') {
       notify('Nothing To Copy', true)
     } else {
-      copyToClipboard()
+      copyToClipboard(password)
       notify(COPY_SUCCESS)
     }
   }
@@ -182,7 +174,7 @@ const Generator = ({ closeGenerator }) => {
           </button>
           <ToastContainer
             position='top-center'
-            autoClose={2000}
+            autoClose={1000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
