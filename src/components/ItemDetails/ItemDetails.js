@@ -47,49 +47,49 @@ class ItemDetails extends React.Component {
           <div className="details__body">
             <div className="details__body-fields">
               <div className="details__field details__field--editable details__field--options">
-                <div className="details__field-label" draggable="true">User</div>
+                <div className="details__field-label">User</div>
                 <div className="details__field-value">{user}</div>
               </div>
               <div
                 className="details__field details__field--editable details__field--can-gen details__field--protect details__field--options">
-                <div className="details__field-label" draggable="true">Password</div>
+                <div className="details__field-label">Password</div>
                 <div className="details__field-value">{password}</div>
               </div>
               <div className="details__field details__field--url details__field--editable details__field--options">
-                <div className="details__field-label" draggable="true">Website</div>
+                <div className="details__field-label">Website</div>
                 <div className="details__field-value">
                   <a href={`https://${website}`} rel="noreferrer noopener" target="_blank">{website}</a>
                 </div>
               </div>
               <div className="details__field details__field--editable details__field--multiline">
-                <div className="details__field-label" draggable="true">Notes</div>
+                <div className="details__field-label">Notes</div>
                 <div className="details__field-value">{notes}</div>
               </div>
               <div className="details__field details__field--editable">
-                <div className="details__field-label" draggable="true">Tags</div>
+                <div className="details__field-label">Tags</div>
                 <div className="details__field-value">{tags}</div>
               </div>
               <div className="details__field details__field--editable">
-                <div className="details__field-label" draggable="true">Group</div>
+                <div className="details__field-label">Group</div>
                 <div className="details__field-value">{group}</div>
               </div>
             </div>
             <div className="details__body-aside">
               <div className="details__field">
-                <div className="details__field-label" draggable="true">File</div>
-                <div className="details__field-value">Demo</div>
+                <div className="details__field-label">File</div>
+                <div className="details__field-value">{file}</div>
               </div>
               <div className="details__field">
-                <div className="details__field-label" draggable="true">Group</div>
-                <div className="details__field-value" data-title="Demo / Internet / Sites / Social">Social</div>
+                <div className="details__field-label">Group</div>
+                <div className="details__field-value">{group}</div>
               </div>
               <div className="details__field">
-                <div className="details__field-label" draggable="true">Created</div>
-                <div className="details__field-value">Sep 6, 2015, 7:29:30 PM</div>
+                <div className="details__field-label">Created</div>
+                <div className="details__field-value">{created}</div>
               </div>
               <div className="details__field">
-                <div className="details__field-label" draggable="true">Updated</div>
-                <div className="details__field-value">May 22, 2021, 5:46:06 PM</div>
+                <div className="details__field-label">Updated</div>
+                <div className="details__field-value">{updated}</div>
               </div>
             </div>
           </div>

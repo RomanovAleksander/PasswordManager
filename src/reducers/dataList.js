@@ -13,16 +13,16 @@ const initialState = {
   data: [
     {
       title: 'Facebook',
-      id: 1,
+      id: 1621702604559.998,
       user: 'smith',
       password: '1234',
       website: 'facebook.com',
       notes: '',
-      tags: 'Internet',
-      group: '1234',
-      created: '1234',
-      updated: '1234',
-      file: '1234'
+      tags: '',
+      group: 'Internet',
+      created: 'Sep 6, 2015, 7:29:30 PM',
+      updated: 'May 22, 2021, 5:46:06 PM',
+      file: 'New'
     },
     // {
     //   title: 'Two',
@@ -51,7 +51,7 @@ const initialState = {
     //   file: '1234'
     // },
   ],
-  activeItem: 1,
+  activeItem: 1621702604559.998,
   searchText: '',
   loading: true,
   error: null
@@ -60,10 +60,11 @@ const initialState = {
 export const dataList = (state, action) => {
   if (state === undefined) {
     if (localStorage.Data) {
+      const localStorageData = LocalStorageService.getItem('Data');
       return {
         ...initialState,
-        data: LocalStorageService.getItem('Data'),
-        activeItem: LocalStorageService.getItem('Data').length
+        data: localStorageData,
+        activeItem: localStorageData[0].id,
       }
     } else {
       return initialState
@@ -106,16 +107,23 @@ export const dataList = (state, action) => {
       };
     case REMOVE_ITEM:
       const updateData = state.data.filter((item) => item.id !== payload);
-      LocalStorageService.setItem('Data', updateData);
+      const isArrayEmpty = () => {
+        if (updateData.length === 0) {
+          return null
+        } else {
+          return updateData[0].id
+        }
+      }
+      // LocalStorageService.setItem('Data', updateData);
       return {
         ...state,
         data: updateData,
-        activeItem: updateData.length
+        activeItem: isArrayEmpty()
       };
     case CREATE_ITEM:
       const newItem = {
         title: '(no title)',
-        id: state.data.length + 1,
+        id: Date.now() + Math.random(),
         user: '-',
         password: '',
         website: '',
