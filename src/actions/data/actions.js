@@ -4,7 +4,8 @@ import {
   FETCH_DATA_SUCCESS,
   SEARCH_DATA,
   VIEW_DETAILS,
-  CREATE_ITEM
+  CREATE_ITEM,
+  REMOVE_ITEM
 } from './types';
 
 const dataRequested = () => {
@@ -45,11 +46,17 @@ const createItem = () => ({
   type: CREATE_ITEM
 });
 
+const removeItem = (item) => ({
+  type: REMOVE_ITEM,
+  payload: item.id
+});
+
 export {
   dataRequested,
  dataLoaded,
  dataError,
   searchData,
   viewDetails,
-  createItem
+  createItem,
+  removeItem
 };

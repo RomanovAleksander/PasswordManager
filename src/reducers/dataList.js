@@ -4,15 +4,52 @@ import {
   FETCH_DATA_SUCCESS,
   SEARCH_DATA,
   VIEW_DETAILS,
-  CREATE_ITEM
+  CREATE_ITEM,
+  REMOVE_ITEM
 } from '../actions/data/types';
 import { LocalStorageService } from '../services';
 
 const initialState = {
   data: [
-    {title: 'One', id: 1, user: '1234'},
-    {title: 'Two', id: 2, user: '1234'},
-    {title: 'Three', id: 3, user: '1234'},
+    {
+      title: 'Facebook',
+      id: 1,
+      user: 'smith',
+      password: '1234',
+      website: 'facebook.com',
+      notes: '',
+      tags: 'Internet',
+      group: '1234',
+      created: '1234',
+      updated: '1234',
+      file: '1234'
+    },
+    // {
+    //   title: 'Two',
+    //   id: 2,
+    //   user: '1234',
+    //   password: '1234',
+    //   website: '1234',
+    //   notes: '1234',
+    //   tags: '1234',
+    //   group: '1234',
+    //   created: '1234',
+    //   updated: '1234',
+    //   file: '1234'
+    // },
+    // {
+    //   title: 'Threee',
+    //   id: 3,
+    //   user: '1234',
+    //   password: '1234',
+    //   website: '1234',
+    //   notes: '1234',
+    //   tags: '1234',
+    //   group: '1234',
+    //   created: '1234',
+    //   updated: '1234',
+    //   file: '1234'
+    // },
   ],
   activeItem: 1,
   searchText: '',
@@ -22,9 +59,11 @@ const initialState = {
 
 export const dataList = (state, action) => {
   if (state === undefined) {
-    if (localStorage.data) {
+    if (localStorage.Data) {
       return {
+        ...initialState,
         data: LocalStorageService.getItem('Data'),
+        activeItem: LocalStorageService.getItem('Data').length
       }
     } else {
       return initialState
@@ -65,11 +104,27 @@ export const dataList = (state, action) => {
         ...state,
         activeItem: payload.activeItem
       };
+    case REMOVE_ITEM:
+      const updateData = state.data.filter((item) => item.id !== payload);
+      LocalStorageService.setItem('Data', updateData);
+      return {
+        ...state,
+        data: updateData,
+        activeItem: updateData.length
+      };
     case CREATE_ITEM:
       const newItem = {
         title: '(no title)',
         id: state.data.length + 1,
-        user: '-'
+        user: '-',
+        password: '',
+        website: '',
+        notes: '',
+        tags: '',
+        group: '',
+        created: '',
+        updated: '',
+        file: ''
       };
       return {
         ...state,

@@ -1,0 +1,180 @@
+.details {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    -webkit-user-select: text;
+    user-select: text;
+    width: 100%;
+}
+
+.details__header {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: .75em;
+    overflow: visible;
+    min-height: 40px;
+}
+
+.details__header-color, .details__header-icon {
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 2.44140625rem !important;
+    padding-top: .4em;
+}
+
+.details__header-title {
+    -webkit-user-select: text;
+    user-select: text;
+    flex: 1;
+    align-self: flex-start;
+    cursor: text;
+    margin: 0 6px;
+    padding: 3px 6px 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: var(--input-border-radius);
+    border: 1px solid transparent;
+    height: 42px;
+    line-height: 40px;
+    white-space: nowrap;
+}
+
+.details__header h1 {
+    font-size: 2.44140625rem;
+}
+
+.details__header-icon {
+    display: inline;
+    border-radius: var(--block-border-radius);
+    width: 1.8em;
+    height: 1.5em;
+    text-align: center;
+}
+
+.details__body {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+    /*flex-direction: column;*/
+    /*justify-content: flex-start;*/
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.details__body-fields {
+    /*flex: 1 0 50%;*/
+    min-width: 0;
+    margin-right: 1em;
+}
+
+.details__field {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: .5em;
+    position: relative;
+}
+
+.details__field-label {
+    color: var(--muted-color);
+    width: 7em;
+    text-align: right;
+    cursor: pointer;
+    padding-right: 1em;
+    border: 1px solid transparent;
+    line-height: 18px;
+    position: relative;
+}
+
+.details__field--options .details__field-value {
+    margin-right: 0;
+}
+.details__field--editable .details__field-value {
+    border-radius: var(--input-border-radius);
+}
+.details__field-value {
+    flex: 1;
+    -webkit-user-select: text;
+    user-select: text;
+    align-self: flex-start;
+    position: relative;
+    cursor: text;
+    padding: 0 1em;
+    border: 1px solid transparent;
+    min-height: 18px;
+    box-sizing: border-box;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 2em;
+}
+
+.details__field--options .details__field-value {
+    margin-right: 0;
+}
+
+.details__field-value>a {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: inline-block;
+    transition: color .15s ease;
+    cursor: pointer;
+    height: 1.2em;
+    border-bottom: 1px dotted;
+}
+
+a {
+    background-color: initial;
+}
+
+.details__body-aside {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.details__body-aside .details__field-value {
+    color: var(--muted-color);
+    width: 13em;
+    padding-right: 0;
+    margin-right: 0;
+    flex: 0 0 auto;
+}
+
+.details__body-aside .details__field-value a {
+    color: var(--muted-color);
+}
+
+.details__buttons {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    margin-top: .5em;
+}
+
+.details__buttons-trash, .details__buttons-trash-del {
+    cursor: pointer;
+    padding: 1em 1.2em;
+    text-align: center;
+    border-radius: var(--block-border-radius);
+    transition: color .15s ease;
+    color: var(--muted-color);
+    align-self: flex-end;
+    margin-right: 10px;
+}

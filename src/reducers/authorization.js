@@ -15,9 +15,10 @@ const initialState = {
 
 export const userData = (state, action) => {
   if (state === undefined) {
-    if (localStorage.userData) {
+    if (localStorage.MP) {
       return {
-        masterPassword: LocalStorageService.getItem('userData')
+        ...initialState,
+        masterPassword: LocalStorageService.getItem('MP')
       }
     } else {
       return initialState

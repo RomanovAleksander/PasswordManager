@@ -19,6 +19,14 @@
     border-right: 1px solid var(--light-border-color);;
 }
 
+.app__details {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    padding: 1.5em;
+    position: relative;
+}
+
 .list {
     justify-content: flex-start;
     overflow: hidden;
