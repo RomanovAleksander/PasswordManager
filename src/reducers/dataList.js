@@ -11,19 +11,19 @@ import { LocalStorageService } from '../services';
 
 const initialState = {
   data: [
-    {
-      title: 'Facebook',
-      id: 1621702604559.998,
-      user: 'smith',
-      password: '1234',
-      website: 'facebook.com',
-      notes: '',
-      tags: '',
-      group: 'Internet',
-      created: 'Sep 6, 2015, 7:29:30 PM',
-      updated: 'May 22, 2021, 5:46:06 PM',
-      file: 'New'
-    },
+    // {
+    //   title: 'Facebook',
+    //   id: 1621702604559.998,
+    //   user: 'smith',
+    //   password: '1234',
+    //   website: 'facebook.com',
+    //   notes: '',
+    //   tags: '',
+    //   group: 'Internet',
+    //   created: 'Sep 6, 2015, 7:29:30 PM',
+    //   updated: 'May 22, 2021, 5:46:06 PM',
+    //   file: 'New'
+    // },
     // {
     //   title: 'Two',
     //   id: 2,

@@ -58,10 +58,13 @@ class ItemsListContainer extends React.Component {
     } = this.props;
 
       const visibleItems = this.search(data, searchText);
-      return <ItemsList
-        onView={(id) => viewDetails(id)}
-        activeItem={activeItem}
-        items={visibleItems} />;
+
+      if (data.length >= 0) {
+        return <ItemsList
+          onView={(id) => viewDetails(id)}
+          activeItem={activeItem}
+          items={visibleItems} />;
+      }
   }
 }
 

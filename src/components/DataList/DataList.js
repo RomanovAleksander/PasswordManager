@@ -29,14 +29,14 @@ class DataList extends React.Component {
       <div className="app-list-wrap">
         <div className="app__list">
           <div className="list">
-            <ListHeader/>
+            <ListHeader />
             <div className="list__items" data-baron-v-id="2">
               {data.length ? <ItemsList /> : emptyBlockList()}
             </div>
           </div>
         </div>
         <div className="app__details">
-          {activeItem ? <ItemDetails /> : emptyDetailsBlock()}
+          {activeItem ? <ItemDetails emptyBlock={emptyDetailsBlock()}/> : emptyDetailsBlock()}
         </div>
       </div>
     );

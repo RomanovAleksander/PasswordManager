@@ -7,7 +7,7 @@ class ItemDetails extends React.Component {
   constructor() {
     super();
     this.state = {
-      booksCount: 1
+
     }
   }
 
@@ -18,25 +18,15 @@ class ItemDetails extends React.Component {
   };
 
   render() {
-    const { data, activeItem, removeItem } = this.props;
+    const { data, activeItem, removeItem, emptyBlock } = this.props;
     const itemIndex = data.findIndex((item) => item.id === activeItem);
     const item = data[itemIndex];
-    const {
-      title,
-      user,
-      password,
-      website,
-      notes,
-      tags,
-      group,
-      created,
-      updated,
-      file
-    } = item;
-    const {booksCount} = this.state;
 
 
-
+    if (data.length > 0) {
+      const { title, user, password, website, notes,
+        tags, group, created, updated, file
+      } = item;
       return (
         <div className="details">
           <div className="details__header">
@@ -100,6 +90,9 @@ class ItemDetails extends React.Component {
           </div>
         </div>
       );
+    } else {
+      return emptyBlock
+    }
   }
 }
 
