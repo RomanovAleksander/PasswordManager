@@ -12,6 +12,16 @@ class DataList extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.onbeforeunload = function(e) {
+      return window.confirm("Confirm refresh");
+    }
+  }
+
+  componentWillUnmount() {
+    window.onbeforeunload = null;
+  }
+
   render() {
     const {data} = this.props;
     return (
@@ -24,6 +34,7 @@ class DataList extends React.Component {
             </div>
           </div>
         </div>
+
       </div>
     );
   }
