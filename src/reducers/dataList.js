@@ -9,31 +9,30 @@ import {
   CHANGE_ITEM
 } from '../actions/data/types';
 import { LocalStorageService } from '../services';
+import {findItemIndex} from "../utils/findIndex";
 
 const initialState = {
   data: [
-    {
-      title: 'Facebook',
-      id: 1621702604559.998,
-      user: 'smith',
-      password: '1234',
-      website: 'facebook.com',
-      notes: '',
-      tags: '',
-      group: 'Internet',
-      created: 'Sep 6, 2015, 7:29:30 PM',
-      updated: 'May 22, 2021, 5:46:06 PM',
-      file: 'New'
-    },
+    // {
+    //   title: 'Facebook',
+    //   id: 1621702604559.998,
+    //   user: 'smith',
+    //   password: '1234',
+    //   website: 'facebook.com',
+    //   notes: '',
+    //   tags: '',
+    //   group: 'Internet',
+    //   created: 'Sep 6, 2015, 7:29:30 PM',
+    //   updated: 'May 22, 2021, 5:46:06 PM',
+    //   file: 'New'
+    // },
   ],
-  activeItem: 1621702604559.998,
-  activeItemIndex: 0,
+  activeItemId: 1621702604559.998,
   searchText: '',
   loading: true,
   error: null
 };
 
-const findItemIndex = (arr, id) => arr.findIndex((item) => item.id === id);
 
 export const dataList = (state, action) => {
   if (state === undefined) {
@@ -42,8 +41,7 @@ export const dataList = (state, action) => {
       return {
         ...initialState,
         data: localStorageData,
-        activeItem: localStorageData[0].id,
-        activeItemIndex: 0
+        activeItemId: localStorageData[0].id,
       }
     } else {
       return initialState
@@ -82,8 +80,7 @@ export const dataList = (state, action) => {
     case VIEW_DETAILS:
       return {
         ...state,
-        activeItem: payload.activeItem,
-        activeItemIndex: findItemIndex(state.data, payload.activeItem)
+        activeItemId: payload.activeItemId,
       };
     case REMOVE_ITEM:
       const updateData = state.data.filter((item) => item.id !== payload);
@@ -98,8 +95,7 @@ export const dataList = (state, action) => {
       return {
         ...state,
         data: updateData,
-        activeItem: isArrayEmpty(),
-        activeItemIndex: updateData.length === 0 ? null : 0
+        activeItemId: isArrayEmpty(),
       };
     case CREATE_ITEM:
       const newItem = {
@@ -118,18 +114,18 @@ export const dataList = (state, action) => {
       return {
         ...state,
         data: [newItem, ...state.data],
-        activeItem: newItem.id,
-        activeItemIndex: findItemIndex([newItem, ...state.data], newItem.id)
+        activeItemId: newItem.id,
       };
     case CHANGE_ITEM:
+      const itemIndex = findItemIndex(state.data, state.activeItemId);
       const updatedItemsList = [
-        ...state.data.slice(0, state.activeItemIndex),
+        ...state.data.slice(0, itemIndex),
         {
-          ...state.data[state.activeItemIndex],
+          ...state.data[itemIndex],
           ...payload
         }
         ,
-        ...state.data.slice(state.activeItemIndex + 1)
+        ...state.data.slice(itemIndex + 1)
       ]
 
       return {

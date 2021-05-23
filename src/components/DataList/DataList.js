@@ -24,7 +24,7 @@ class DataList extends React.Component {
   }
 
   render() {
-    const {data, activeItem} = this.props;
+    const {data, activeItemId} = this.props;
     return (
       <div className="app-list-wrap">
         <div className="app__list">
@@ -36,7 +36,7 @@ class DataList extends React.Component {
           </div>
         </div>
         <div className="app__details">
-          {activeItem ? <ItemDetails emptyBlock={emptyDetailsBlock()}/> : emptyDetailsBlock()}
+          {activeItemId ? <ItemDetails emptyBlock={emptyDetailsBlock()}/> : emptyDetailsBlock()}
         </div>
       </div>
     );
@@ -66,7 +66,7 @@ const emptyDetailsBlock = () => {
 const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
-    activeItem: state.dataList.activeItem
+    activeItemId: state.dataList.activeItemId
   }
 };
 

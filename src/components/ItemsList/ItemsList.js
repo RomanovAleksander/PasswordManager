@@ -4,14 +4,14 @@ import {ItemsListItem} from "../ItemsListItem";
 import {viewDetails} from "../../actions/data/actions";
 import './itemsList.css';
 
-const ItemsList = ({ items, onView, activeItem }) => {
-  const isActive = (id, activeItem) => {
-    if (id === activeItem) return 'list__item list__item--active'
+const ItemsList = ({ items, onView, activeItemId }) => {
+  const isActive = (id, activeItemId) => {
+    if (id === activeItemId) return 'list__item list__item--active'
     else return 'list__item'
   };
 
-  const activated = (id, activeItem, onView) => {
-    switch (activeItem) {
+  const activated = (id, activeItemId, onView) => {
+    switch (activeItemId) {
       case id:
         break;
 
@@ -25,13 +25,13 @@ const ItemsList = ({ items, onView, activeItem }) => {
       {
         items.map((item) => {
           return (
-            <div className={isActive(item.id, activeItem)}
+            <div className={isActive(item.id, activeItemId)}
                  key={item.id}
-                 onClick={() => activated(item.id, activeItem, onView)}
+                 onClick={() => activated(item.id, activeItemId, onView)}
             >
               <ItemsListItem
                 item={item}
-                activeItem={activeItem}
+                activeItemId={activeItemId}
               />
             </div>
           )
@@ -54,7 +54,7 @@ class ItemsListContainer extends React.Component {
 
   render() {
     const {
-      data, searchText, viewDetails, activeItem
+      data, searchText, viewDetails, activeItemId
     } = this.props;
 
       const visibleItems = this.search(data, searchText);
@@ -62,7 +62,7 @@ class ItemsListContainer extends React.Component {
       if (data.length >= 0) {
         return <ItemsList
           onView={(id) => viewDetails(id)}
-          activeItem={activeItem}
+          activeItemId={activeItemId}
           items={visibleItems} />;
       }
   }
@@ -72,7 +72,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
     searchText: state.dataList.searchText,
-    activeItem: state.dataList.activeItem,
+    activeItemId: state.dataList.activeItemId,
   }
 };
 

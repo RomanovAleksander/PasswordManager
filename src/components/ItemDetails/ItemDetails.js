@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { removeItem, changeItem } from '../../actions/data/actions';
 import './itemDetails.css';
 import { copyToClipboard } from '../../utils/copyToClipboard';
-
+import {findItemIndex} from "../../utils/findIndex";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -32,8 +32,8 @@ class ItemDetails extends React.Component {
 
 
   render() {
-    const { data, removeItem, emptyBlock, activeItemIndex } = this.props;
-    const item = data[activeItemIndex];
+    const { data, removeItem, emptyBlock, activeItemId } = this.props;
+    const item = data[findItemIndex(data, activeItemId)];
 
     if (data.length > 0) {
       const {
@@ -129,8 +129,7 @@ class ItemDetails extends React.Component {
 const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
-    activeItem: state.dataList.activeItem,
-    activeItemIndex: state.dataList.activeItemIndex
+    activeItemId: state.dataList.activeItemId
   }
 };
 

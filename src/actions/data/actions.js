@@ -36,10 +36,10 @@ const searchData = (searchText) => ({
   }
 });
 
-const viewDetails = (activeItem) => ({
+const viewDetails = (activeItemId) => ({
   type: VIEW_DETAILS,
   payload: {
-    activeItem
+    activeItemId
   }
 });
 
