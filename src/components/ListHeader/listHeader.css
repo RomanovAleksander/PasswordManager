@@ -30,7 +30,7 @@ input:not([type]).input-search, input[type=password].input-search, input[type=te
     left: .6em;
     color: var(--muted-color);
     position: absolute;
-    top: .53em;
+    top: 0.45em;
 }
 
 .list__search-btn-new {

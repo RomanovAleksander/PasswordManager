@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signInRequest, signInSuccess, signInError, createNewFile, openFile } from '../../actions/signin/actions';
+import { signInRequest, signInSuccess, signInError} from '../../actions/signin/actions';
 import { openGenerator, closeGenerator } from '../../actions/generator/actions';
-import {decryptData} from "../../services/crypt";
 import {dataLoaded, dataRequested} from "../../actions/data/actions";
+import {setFileName} from "../../actions/fileActions/actions";
+import {decryptData} from "../../services/crypt";
 import { toast, ToastContainer } from 'react-toastify';
 import { LocalStorageService }  from '../../services';
 import {FormButtons} from "../FormButtons";
@@ -45,7 +46,7 @@ class LoginForm extends React.Component {
   checkCypher = (data, masterPassword) => {
     const { signInRequest, signInSuccess, signInError, dataLoaded} = this.props;
     signInRequest();
-    // openFile();
+
     if (data === 'Invalid Password' ||  !data) {
       signInError(data)
     } else {
@@ -59,7 +60,7 @@ class LoginForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { masterPassword } = this.state;
-    const { signInRequest, signInSuccess, createNewFile} = this.props;
+    const { signInRequest, signInSuccess, setFileName } = this.props;
 
     const { button } = this.state;
 
@@ -69,15 +70,16 @@ class LoginForm extends React.Component {
         let data = null;
         if (localStorageData) {
           data = decryptData(localStorageData, masterPassword);
-          this.checkCypher(data, masterPassword)
+          this.checkCypher(data, masterPassword);
         } else {
-          this.upload()
+          this.upload();
         }
         break;
       case 'new':
         signInRequest();
         signInSuccess(masterPassword);
-        createNewFile()
+        setFileName('New.txt');
+
         console.log(masterPassword);
         break;
       case 'generate':
@@ -111,7 +113,8 @@ class LoginForm extends React.Component {
       const fileContents = e.target.result;
       this.setState({fileContent: fileContents})
       fileName = fileObj.name;
-      console.log(fileName);
+
+      this.props.setFileName(fileName);
       LocalStorageService.setItem('Data', fileContents);
 
       //check is password valid
@@ -175,11 +178,10 @@ const mapDispatchToProps = {
   signInRequest,
   signInSuccess,
   signInError,
-  createNewFile,
-  openFile,
   dataLoaded, dataRequested,
   openGenerator,
-  closeGenerator
+  closeGenerator,
+  setFileName
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -2,9 +2,7 @@ import {
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILURE,
-  SIGN_OUT,
-  CREATE_FILE,
-  OPEN_FILE
+  SIGN_OUT
 } from './types';
 
 const signInRequest = () => {
@@ -33,23 +31,9 @@ const userSignOut = () => {
   }
 };
 
-const createNewFile = () => {
-  return {
-    type: CREATE_FILE
-  }
-};
-
-const openFile = () => {
-  return {
-    type: OPEN_FILE
-  }
-};
-
 export {
   signInRequest,
   signInSuccess,
   signInError,
-  userSignOut,
-  createNewFile,
-  openFile
+  userSignOut
 };
