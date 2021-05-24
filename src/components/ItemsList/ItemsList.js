@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {ItemsListItem} from "../ItemsListItem";
 import {viewDetails} from "../../actions/data/actions";
 import './itemsList.css';
 
-const ItemsList = ({ items, onView, activeItemId }) => {
+const ItemsList = ({items, onView, activeItemId}) => {
   const isActive = (id, activeItemId) => {
     if (id === activeItemId) return 'list__item list__item--active'
     else return 'list__item'
@@ -57,14 +57,14 @@ class ItemsListContainer extends React.Component {
       data, searchText, viewDetails, activeItemId
     } = this.props;
 
-      const visibleItems = this.search(data, searchText);
+    const visibleItems = this.search(data, searchText);
 
-      if (data.length >= 0) {
-        return <ItemsList
-          onView={(id) => viewDetails(id)}
-          activeItemId={activeItemId}
-          items={visibleItems} />;
-      }
+    if (data.length >= 0) {
+      return <ItemsList
+        onView={(id) => viewDetails(id)}
+        activeItemId={activeItemId}
+        items={visibleItems}/>;
+    }
   }
 }
 

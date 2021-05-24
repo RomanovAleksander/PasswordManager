@@ -3,8 +3,8 @@ import {openGenerator} from "../../actions/generator/actions";
 import {connect} from "react-redux";
 
 class FormButton extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       active: ''
     }
@@ -19,7 +19,7 @@ class FormButton extends React.Component {
   };
 
   render() {
-    const { button } = this.props;
+    const {button} = this.props;
 
     const selectIcon = (icon) => {
       if (icon === 'open') {
@@ -42,7 +42,7 @@ class FormButton extends React.Component {
               <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
               <div className="open__icon-text">{button}</div>
             </label>
-          :
+            :
             <label className="" htmlFor={button}>
               <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
               <div className="open__icon-text">{button}</div>

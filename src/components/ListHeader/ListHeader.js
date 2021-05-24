@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './listHeader.css';
 import {searchData, createItem} from "../../actions/data/actions";
+import './listHeader.css';
 
 const ListHeader = ({searchData, searchText, createItem}) => {
   const onSearchChange = ({ target }) => {

@@ -15,10 +15,10 @@ const dataRequested = () => {
   }
 };
 
-const dataLoaded = (newItem) => {
+const dataLoaded = (data) => {
   return {
     type: FETCH_DATA_SUCCESS,
-    payload: newItem
+    payload: data
   }
 };
 

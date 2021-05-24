@@ -1,42 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './footer.css';
-import {userSignOut} from "../../actions/signin/actions";
 import {openGenerator} from "../../actions/generator/actions";
-import {LocalStorageService} from "../../services";
+import {FileActions} from "../FileActions";
+import './footer.css';
 
-const Footer = ({userSignOut, openGenerator, data}) => {
-  const signOut = () => {
-    LocalStorageService.setItem('Data', data);
-    userSignOut()
-  };
-
+const Footer = ({ openGenerator }) => {
     return (
       <div className="app__footer">
         <div className="footer">
           <div className="footer__btn footer__btn-generate" id="footer__btn-generate"
-               data-title="Generate" onClick={() => openGenerator()}>
+               data-title="Generate" onClick={() => openGenerator()} title="Generator">
             <i className="fa fa-bolt"> </i>
           </div>
-          <div className="footer__btn footer__btn-lock" id="footer__btn-lock"
-               data-title="Lock" onClick={signOut}>
-            <i className="fa fa-sign-out"> </i>
-          </div>
+          <FileActions isOpen={false}/>
         </div>
       </div>
     )
-}
-
-const mapStateToProps = (state) => {
-  return {
-    data: state.dataList.data
-  }
 };
 
 const mapDispatchToProps = {
-  userSignOut,
   openGenerator
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+export default connect(null, mapDispatchToProps)(Footer);
 

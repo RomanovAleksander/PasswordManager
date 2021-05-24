@@ -8,26 +8,13 @@ import {
   REMOVE_ITEM,
   CHANGE_ITEM
 } from '../actions/data/types';
-import { LocalStorageService } from '../services';
+// import { LocalStorageService } from '../services';
 import {findItemIndex} from "../utils/findIndex";
+// import { decryptData } from "../services/crypt";
 
 const initialState = {
-  data: [
-    // {
-    //   title: 'Facebook',
-    //   id: 1621702604559.998,
-    //   user: 'smith',
-    //   password: '1234',
-    //   website: 'facebook.com',
-    //   notes: '',
-    //   tags: '',
-    //   group: 'Internet',
-    //   created: 'Sep 6, 2015, 7:29:30 PM',
-    //   updated: 'May 22, 2021, 5:46:06 PM',
-    //   file: 'New'
-    // },
-  ],
-  activeItemId: 1621702604559.998,
+  data: [],
+  activeItemId: null,
   searchText: '',
   loading: true,
   error: null
@@ -36,16 +23,16 @@ const initialState = {
 
 export const dataList = (state, action) => {
   if (state === undefined) {
-    if (localStorage.Data) {
-      const localStorageData = LocalStorageService.getItem('Data');
-      return {
-        ...initialState,
-        data: localStorageData,
-        activeItemId: localStorageData[0].id,
-      }
-    } else {
+    // if (localStorage.Data) {
+    //   const localStorageData = LocalStorageService.getItem('Data');
+    //   return {
+    //     ...initialState,
+    //     data: decryptData(localStorageData, '123'),
+    //     activeItemId: localStorageData[0].id,
+    //   }
+    // } else {
       return initialState
-    }
+    // }
   }
 
   const { type, payload } = action;

@@ -4,7 +4,7 @@ import {
   SIGN_IN_FAILURE,
   SIGN_OUT
 } from '../actions/signin/types';
-import { LocalStorageService } from '../services';
+// import { LocalStorageService } from '../services';
 
 const initialState = {
   masterPassword: null,
@@ -13,16 +13,16 @@ const initialState = {
   error: null
 };
 
-export const userData = (state, action) => {
+export const authorization = (state, action) => {
   if (state === undefined) {
-    if (localStorage.MP) {
-      return {
-        ...initialState,
-        masterPassword: LocalStorageService.getItem('MP')
-      }
-    } else {
+    // if (localStorage.MP) {
+    //   return {
+    //     ...initialState,
+    //     masterPassword: LocalStorageService.getItem('MP')
+    //   }
+    // } else {
       return initialState
-    }
+    // }
   }
 
   const { type, payload } = action;
@@ -47,7 +47,7 @@ export const userData = (state, action) => {
         error: payload
       };
     case SIGN_OUT:
-      // localStorage.clear();
+      localStorage.clear();
       return {
         ...initialState
       };

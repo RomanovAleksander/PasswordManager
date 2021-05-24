@@ -1,21 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signInRequest, signInSuccess, signInError } from '../../actions/signin/actions';
+import { signInRequest, signInSuccess, signInError, createNewFile, openFile } from '../../actions/signin/actions';
 import { openGenerator, closeGenerator } from '../../actions/generator/actions';
-import { LocalStorageService }  from '../../services';
-import './loginForm.css';
-import {FormButtons} from "../FormButtons";
+import {decryptData} from "../../services/crypt";
+import {dataLoaded, dataRequested} from "../../actions/data/actions";
 import { toast, ToastContainer } from 'react-toastify';
+import { LocalStorageService }  from '../../services';
+import {FormButtons} from "../FormButtons";
 import 'react-toastify/dist/ReactToastify.css';
+import './loginForm.css';
 
 class LoginForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.fileContent = '';
     this.state = {
       button: 'new',
       masterPassword: '',
-      isPassword: false
+      isAuthorized: false,
+      fileContents: ''
     }
+  }
+
+  componentDidMount() {
+    window.onbeforeunload = function(e) {
+      localStorage.clear();
+    }
+  }
+
+  componentWillUnmount() {
+    window.onbeforeunload = null;
   }
 
   onChange = ({ target }) => {
@@ -28,22 +42,43 @@ class LoginForm extends React.Component {
     this.setState({ button });
   };
 
+  checkCypher = (data, masterPassword) => {
+    const { signInRequest, signInSuccess, signInError, dataLoaded} = this.props;
+    signInRequest();
+    // openFile();
+    if (data === 'Invalid Password' ||  !data) {
+      signInError(data)
+    } else {
+      signInSuccess(masterPassword);
+      dataLoaded(data);
+    }
+    console.log(masterPassword);
+    console.log('open data', data);
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     const { masterPassword } = this.state;
-    const { signInRequest, signInSuccess } = this.props;
+    const { signInRequest, signInSuccess, createNewFile} = this.props;
 
     const { button } = this.state;
 
     switch (button) {
       case 'open':
-        console.log('open file')
+        const localStorageData = LocalStorageService.getItem('Data');
+        let data = null;
+        if (localStorageData) {
+          data = decryptData(localStorageData, masterPassword);
+          this.checkCypher(data, masterPassword)
+        } else {
+          this.upload()
+        }
         break;
       case 'new':
         signInRequest();
         signInSuccess(masterPassword);
-        LocalStorageService.setItem('MP', masterPassword);
-        console.log(masterPassword)
+        createNewFile()
+        console.log(masterPassword);
         break;
       case 'generate':
         console.log('err file');
@@ -63,10 +98,42 @@ class LoginForm extends React.Component {
     }
   };
 
+  upload = () => {
+    this.dofileUpload.click()
+  }
+
+  openFile = (evt) => {
+    const fileObj = evt.target.files[0];
+    let fileName = '';
+    const reader = new FileReader();
+
+    let fileloaded = (e) => {
+      const fileContents = e.target.result;
+      this.setState({fileContent: fileContents})
+      fileName = fileObj.name;
+      console.log(fileName);
+      LocalStorageService.setItem('Data', fileContents);
+
+      //check is password valid
+      const data = decryptData(fileContents, this.state.masterPassword);
+      this.checkCypher(data, this.state.masterPassword);
+    }
+
+    fileloaded = fileloaded.bind(this);
+    reader.onload = fileloaded;
+    reader.readAsText(fileObj);
+  }
+
   render() {
     return (
         <form className="open" onSubmit={this.onSubmit}>
           <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']}/>
+          <input type="file" className="hidden"
+                 multiple={false}
+                 accept=".txt"
+                 onChange={evt => this.openFile(evt)}
+                 ref={e => this.dofileUpload = e}
+          />
           <div className="open__pass-area">
             <div className="open__pass-field-wrap">
               <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password"
@@ -74,8 +141,8 @@ class LoginForm extends React.Component {
                      onChange={this.onChange}
               />
               <button className="open__pass-enter-btn" tabIndex="24" type="submit">
-                <i className="fa fa-level-down rotate-90 open__pass-enter-btn-icon-enter"></i>
-                <i className="fa fa-fingerprint open__pass-enter-btn-icon-touch-id"></i>
+                <i className="fa fa-level-down rotate-90 open__pass-enter-btn-icon-enter"/>
+                <i className="fa fa-fingerprint open__pass-enter-btn-icon-touch-id"/>
               </button>
             </div>
           </div>
@@ -97,9 +164,10 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthorized: state.userData.isAuthorized,
-    loading: state.userData.loading,
-    error: state.userData.error
+    isAuthorized: state.authorization.isAuthorized,
+    loading: state.authorization.loading,
+    error: state.authorization.error,
+    data: state.dataList.data
   }
 };
 
@@ -107,6 +175,9 @@ const mapDispatchToProps = {
   signInRequest,
   signInSuccess,
   signInError,
+  createNewFile,
+  openFile,
+  dataLoaded, dataRequested,
   openGenerator,
   closeGenerator
 };

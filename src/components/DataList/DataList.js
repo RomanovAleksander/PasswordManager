@@ -1,20 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import './dataList.css';
+import {connect} from 'react-redux';
 import {ListHeader} from "../ListHeader";
 import {ItemsList} from "../ItemsList";
 import {ItemDetails} from "../ItemDetails";
+import './dataList.css';
 
 class DataList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-
-    }
-  }
-
   componentDidMount() {
-    window.onbeforeunload = function(e) {
+    window.onbeforeunload = function (e) {
       return window.confirm("Confirm refresh");
     }
   }
@@ -29,9 +22,9 @@ class DataList extends React.Component {
       <div className="app-list-wrap">
         <div className="app__list">
           <div className="list">
-            <ListHeader />
+            <ListHeader/>
             <div className="list__items" data-baron-v-id="2">
-              {data.length ? <ItemsList /> : emptyBlockList()}
+              {data.length ? <ItemsList/> : emptyBlockList()}
             </div>
           </div>
         </div>
@@ -46,10 +39,10 @@ class DataList extends React.Component {
 const emptyBlockList = () => {
   return (
     <div className="empty-block muted-color">
-      <div className="empty-block__icon"><i className="fa fa-key"></i></div>
+      <div className="empty-block__icon"><i className="fa fa-key" /></div>
       <h1 className="empty-block__title">Empty</h1>
       <p className="empty-block__text">
-        add with <i className="fa fa-plus"></i> button above
+        add with <i className="fa fa-plus" /> button above
       </p>
     </div>
   );

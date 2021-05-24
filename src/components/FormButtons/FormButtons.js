@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormButton } from '../FormButton';
+import {FormButton} from '../FormButton';
 
 export default class FormButtons extends React.Component {
   constructor() {
@@ -10,14 +10,14 @@ export default class FormButtons extends React.Component {
   }
 
   handleChange = (e) => {
-    const { onButtonChange } = this.props;
+    const {onButtonChange} = this.props;
     const button = e.target.value;
-    this.setState({ button });
+    this.setState({button});
     onButtonChange(button);
   };
 
   render() {
-    const { buttons } = this.props;
+    const {buttons} = this.props;
     return (
       <div className="open__icons">
         {
