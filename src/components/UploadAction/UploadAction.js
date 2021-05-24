@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {userSignOut} from '../../actions/signin/actions';
 import {encryptData} from "../../services/crypt";
 import {dataRequested} from "../../actions/data/actions";
 import './fileActions.css';
@@ -19,7 +18,7 @@ class UploadAction extends React.Component {
 
   download = (event) => {
     event.preventDefault();
-    const {data, masterPassword, dataRequested, userSignOut} = this.props;
+    const {data, masterPassword, dataRequested} = this.props;
     const encryptedData = encryptData(data, masterPassword);
 
     const blob = new Blob([encryptedData]);
@@ -30,7 +29,6 @@ class UploadAction extends React.Component {
         URL.revokeObjectURL(fileDownloadUrl);
         this.setState({fileDownloadUrl: ""});
         dataRequested();
-        userSignOut();
       });
   }
 
@@ -38,8 +36,8 @@ class UploadAction extends React.Component {
     return (
       <form>
         <div className="footer__btn footer__btn-lock" id="footer__btn-lock"
-             data-title="Lock" onClick={this.download} title="Save and Out">
-          <i className="fa fa-sign-out"> </i>
+             data-title="Lock" onClick={this.download} title="Save">
+          <i className="fa fa-save" />
         </div>
         <a className="hidden"
            download={'New.txt'}
@@ -59,7 +57,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  userSignOut,
   dataRequested
 };
 
