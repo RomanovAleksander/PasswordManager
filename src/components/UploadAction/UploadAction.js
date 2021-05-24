@@ -5,7 +5,7 @@ import {encryptData} from "../../services/crypt";
 import {dataRequested} from "../../actions/data/actions";
 import './fileActions.css';
 
-class FileActions extends React.Component {
+class UploadAction extends React.Component {
   constructor(props) {
     super(props)
 
@@ -63,4 +63,4 @@ const mapDispatchToProps = {
   dataRequested
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FileActions);
+export default connect(mapStateToProps, mapDispatchToProps)(UploadAction);

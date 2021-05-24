@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {openGenerator} from "../../actions/generator/actions";
-import {FileActions} from "../FileActions";
+import {UploadAction} from "../UploadAction";
 import './footer.css';
 
 const Footer = ({ openGenerator }) => {
@@ -12,7 +12,7 @@ const Footer = ({ openGenerator }) => {
                data-title="Generate" onClick={() => openGenerator()} title="Generator">
             <i className="fa fa-bolt"> </i>
           </div>
-          <FileActions isOpen={false}/>
+          <UploadAction />
         </div>
       </div>
     )
