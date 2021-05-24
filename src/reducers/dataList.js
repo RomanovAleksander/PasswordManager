@@ -10,6 +10,7 @@ import {
 } from '../actions/data/types';
 // import { LocalStorageService } from '../services';
 import {findItemIndex} from "../utils/findIndex";
+import {getCurrentDate} from "../utils/date";
 // import { decryptData } from "../services/crypt";
 
 const initialState = {
@@ -85,6 +86,7 @@ export const dataList = (state, action) => {
         activeItemId: isArrayEmpty(),
       };
     case CREATE_ITEM:
+
       const newItem = {
         title: '(no title)',
         id: Date.now() + Math.random(),
@@ -94,7 +96,7 @@ export const dataList = (state, action) => {
         notes: '',
         tags: '',
         group: '',
-        created: '',
+        created: getCurrentDate(),
         updated: '',
         file: ''
       };
@@ -109,6 +111,7 @@ export const dataList = (state, action) => {
         ...state.data.slice(0, itemIndex),
         {
           ...state.data[itemIndex],
+          updated: getCurrentDate(),
           ...payload
         }
         ,

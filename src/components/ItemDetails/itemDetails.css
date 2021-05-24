@@ -99,6 +99,7 @@
     border: 1px solid transparent;
     line-height: 18px;
     position: relative;
+    text-transform: capitalize;
 }
 
 .details__field--options .details__field-value {

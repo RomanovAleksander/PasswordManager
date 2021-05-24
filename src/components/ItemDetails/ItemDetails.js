@@ -32,14 +32,18 @@ class ItemDetails extends React.Component {
 
 
   render() {
-    const { data, removeItem, emptyBlock, activeItemId } = this.props;
+    const { data, fileName, removeItem, emptyBlock, activeItemId } = this.props;
     const item = data[findItemIndex(data, activeItemId)];
 
     if (data.length > 0) {
       const {
         title, user, password, website, notes,
-        tags, group, created, updated, file, id
+        tags, group, created, updated, id
       } = item;
+      const mainItem = {user, password, website, notes, tags, group};
+      const secondItem = {group, created, updated};
+      const mainKeys = Object.keys(mainItem);
+      const secondKeys = Object.keys(secondItem);
 
       return (
         <div className="details">
@@ -51,55 +55,33 @@ class ItemDetails extends React.Component {
           </div>
           <div className="details__body">
             <div className="details__body-fields">
-              <div className="details__field details__field--editable details__field--options">
-                <div className="details__field-label" onClick={() => this.copyInformation(user)}>User</div>
-                <input className="details__field-value" name="user" type="text" autoComplete="off"
-                       value={user}  onChange={this.handleInputChange} />
-              </div>
-              <div
-                className="details__field details__field--editable details__field--can-gen details__field--protect details__field--options">
-                <div className="details__field-label">Password</div>
-                <input className="details__field-value" name="password" type="text" autoComplete="off"
-                       value={password}  onChange={this.handleInputChange} />
-              </div>
-              <div className="details__field details__field--url details__field--editable details__field--options">
-                <div className="details__field-label">Website</div>
-                <input className="details__field-value" name="website" type="text" autoComplete="off"
-                       value={website}  onChange={this.handleInputChange} />
-              </div>
-              <div className="details__field details__field--editable details__field--multiline">
-                <div className="details__field-label">Notes</div>
-                <input className="details__field-value" name="notes" type="text" autoComplete="off"
-                       value={notes}  onChange={this.handleInputChange} />
-              </div>
-              <div className="details__field details__field--editable">
-                <div className="details__field-label">Tags</div>
-                <input className="details__field-value" name="tags" type="text" autoComplete="off"
-                       value={tags}  onChange={this.handleInputChange} />
-              </div>
-              <div className="details__field details__field--editable">
-                <div className="details__field-label">Group</div>
-                <input className="details__field-value" name="group" type="text" autoComplete="off"
-                       value={group}  onChange={this.handleInputChange} />
-              </div>
+              {
+                mainKeys.map((key) => {
+                  return (
+                    <div className="details__field" key={key}>
+                      <div className="details__field-label" onClick={() => this.copyInformation(mainItem[key])}>{key}</div>
+                      <input className="details__field-value" name={key} type="text" autoComplete="off"
+                             value={mainItem[key]}  onChange={this.handleInputChange} />
+                    </div>
+                  )
+                })
+              }
             </div>
             <div className="details__body-aside">
               <div className="details__field">
-                <div className="details__field-label">File</div>
-                <div className="details__field-value">{file}</div>
+                <div className="details__field-label">file</div>
+                <div className="details__field-value">{fileName.split('.')[0]}</div>
               </div>
-              <div className="details__field">
-                <div className="details__field-label">Group</div>
-                <div className="details__field-value">{group}</div>
-              </div>
-              <div className="details__field">
-                <div className="details__field-label">Created</div>
-                <div className="details__field-value">{created}</div>
-              </div>
-              <div className="details__field">
-                <div className="details__field-label">Updated</div>
-                <div className="details__field-value">{updated}</div>
-              </div>
+              {
+                secondKeys.map((key) => {
+                  return (
+                    <div className="details__field" key={key}>
+                      <div className="details__field-label">{key}</div>
+                      <div className="details__field-value">{secondItem[key]}</div>
+                    </div>
+                  )
+                })
+              }
             </div>
           </div>
           <div className="details__buttons">
@@ -129,7 +111,8 @@ class ItemDetails extends React.Component {
 const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
-    activeItemId: state.dataList.activeItemId
+    activeItemId: state.dataList.activeItemId,
+    fileName: state.file.fileName
   }
 };
 
