@@ -169,7 +169,7 @@ const Generator = ({closeGenerator}) => {
           <label htmlFor='include-symbols'> </label>
         </div>
 
-        <button onClick={handleGeneratePassword} className='generator__btn'>
+        <button onClick={handleGeneratePassword} className='generator__btn btn'>
           Generate Password
         </button>
         <ToastContainer

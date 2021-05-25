@@ -9,7 +9,7 @@
     align-items: stretch;
     flex-direction: row;
     justify-content: space-between;
-    position: relative;
+    /*position: relative;*/
 }
 
 .footer__btn {

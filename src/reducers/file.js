@@ -1,10 +1,12 @@
 import {
-  SET_FILENAME
+  SET_FILENAME,
+  OPEN_CONFIRM_BOX
 } from '../actions/fileActions/types';
 
 const initialState = {
   fileName: '',
-  isSave: false
+  isSave: false,
+  isConfirmOpen: false
 };
 
 export const file = (state, action) => {
@@ -15,6 +17,11 @@ export const file = (state, action) => {
       return {
         ...state,
         fileName: payload
+      };
+    case OPEN_CONFIRM_BOX:
+      return {
+        ...state,
+        isConfirmOpen: !state.isConfirmOpen
       };
 
     default:

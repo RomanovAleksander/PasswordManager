@@ -1,5 +1,6 @@
 import {
-  SET_FILENAME
+  SET_FILENAME,
+  OPEN_CONFIRM_BOX
 } from './types';
 
 const setFileName = (fileName) => {
@@ -9,6 +10,13 @@ const setFileName = (fileName) => {
   }
 };
 
+const openConfirmBox = () => {
+  return {
+    type:  OPEN_CONFIRM_BOX
+  }
+};
+
 export {
-  setFileName
+  setFileName,
+  openConfirmBox
 };

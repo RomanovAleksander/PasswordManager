@@ -79,20 +79,19 @@
   color: var(--action-background-color-active);
 }
 
-.generator__btn:hover {
-  background: var(--action-background-color-active);
-}
-
 .copy__btn i {
   font-size: 1.2em;
 }
 
 .generator__btn {
+  width: 100%;
+}
+
+.btn {
   background: var(--action-color);
+  padding: 10px;
   border: none;
   display: block;
-  width: 100%;
-  padding: 10px;
   color: var(--text-color);
   font-size: 1rem;
   font-weight: 600;
@@ -100,6 +99,10 @@
   transition: 0.15s ease;
   cursor: pointer;
   border-radius: var(--block-border-radius);
+}
+
+.btn:hover {
+  background: var(--action-background-color-active);
 }
 
 .form-group {

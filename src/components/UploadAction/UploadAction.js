@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {encryptData} from "../../services/crypt";
 import {dataRequested} from "../../actions/data/actions";
 import {userSignOut} from "../../actions/signin/actions";
+import {openConfirmBox} from "../../actions/fileActions/actions";
+import {ConfirmBox} from "../ConfirmBox";
 import './fileActions.css';
 
 class UploadAction extends React.Component {
@@ -36,29 +38,34 @@ class UploadAction extends React.Component {
       });
   }
 
-  logOut = () => {
-    let isSave = window.confirm('Do you want to save this file?');
+  logOut = (isSave) => {
+    this.props.openConfirmBox();
 
     if (isSave) {
-      this.download(true)
+      this.download(true);
     } else {
       this.props.userSignOut();
     }
   }
 
   render() {
+    const { isConfirmOpen, openConfirmBox, fileName } = this.props;
     return (
       <>
+        {isConfirmOpen ? <ConfirmBox openConfirmBox={openConfirmBox}
+                                     handleLogOut={() => this.logOut(false)}
+                                     handleSaveAndLogOut={() => this.logOut(true)}
+        /> : null}
         <div className="footer__btn footer__btn-lock" id="footer__btn-lock"
              data-title="Lock" onClick={() => this.download(false)} title="Save">
           <i className="fa fa-save" />
         </div>
         <a className="hidden"
-           download={this.props.fileName}
+           download={fileName}
            href={this.state.fileDownloadUrl}
            ref={e => this.dofileDownload = e}
         >download it</a>
-        <div className="footer__btn" title="Log out" onClick={this.logOut}>
+        <div className="footer__btn" title="Log out" onClick={() => openConfirmBox()}>
           <i className="fa fa-sign-out"/>
         </div>
       </>
@@ -71,13 +78,15 @@ const mapStateToProps = (state) => {
     data: state.dataList.data,
     masterPassword: state.authorization.masterPassword,
     fileName: state.file.fileName,
-    isSave: state.file.isSave
+    isSave: state.file.isSave,
+    isConfirmOpen: state.file.isConfirmOpen,
   }
 };
 
 const mapDispatchToProps = {
   dataRequested,
-  userSignOut
+  userSignOut,
+  openConfirmBox
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadAction);

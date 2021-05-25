@@ -17,10 +17,10 @@ class App extends React.Component {
     return (
       <>
         <div className="app__body">
-          {isOpen ? <Generator/> : null}
-          {isAuthorized ? <DataList/> : <LoginForm/>}
+          {isOpen ? <Generator /> : null}
+          {isAuthorized ? <DataList /> : <LoginForm />}
         </div>
-        {isAuthorized ? <Footer/> : null}
+        {isAuthorized ? <Footer /> : null}
       </>
     );
   }

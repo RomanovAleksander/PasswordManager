@@ -1,1 +1,2 @@
 export const SET_FILENAME = 'SET_FILENAME';
+export const OPEN_CONFIRM_BOX = 'OPEN_CONFIRM_BOX';
