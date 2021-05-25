@@ -9,8 +9,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import { LocalStorageService }  from '../../services';
 import {FormButtons} from "../FormButtons";
 import 'react-toastify/dist/ReactToastify.css';
-import './loginForm.css';
 import {ThemeSwitcher} from "../ThemeSwitcher";
+import './loginForm.css';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -45,17 +45,26 @@ class LoginForm extends React.Component {
   };
 
   checkCypher = (data, masterPassword) => {
-    const { signInRequest, signInSuccess, signInError, dataLoaded} = this.props;
+    const { signInRequest, signInSuccess, signInError, dataLoaded, isUA } = this.props;
     signInRequest();
 
     if (data === 'Invalid Password' ||  !data) {
-      signInError(data)
+      signInError('Invalid Password');
+      toast.error(`${isUA ? 'Невірний пароль' : 'Invalid Password'}`, {
+        position: 'top-center',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       signInSuccess(masterPassword);
       dataLoaded(data);
     }
-    console.log(masterPassword);
-    console.log('open data', data);
+    // console.log(masterPassword);
+    // console.log('open data', data);
   }
 
   onSubmit = (e) => {
@@ -82,18 +91,6 @@ class LoginForm extends React.Component {
         setFileName('NewFile.txt');
 
         console.log(masterPassword);
-        break;
-      case 'generate':
-        console.log('err file');
-        toast.error('Select the file or create', {
-          position: 'top-center',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
         break;
 
       default:
@@ -152,7 +149,7 @@ class LoginForm extends React.Component {
           </div>
           <ToastContainer
             position='top-center'
-            autoClose={2000}
+            autoClose={1000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick

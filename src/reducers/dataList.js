@@ -49,6 +49,7 @@ export const dataList = (state, action) => {
       return {
         ...state,
         data: payload,
+        activeItemId: payload[0].id,
         loading: false,
         error: null
       };
