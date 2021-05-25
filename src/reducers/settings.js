@@ -6,7 +6,7 @@ import { LocalStorageService } from '../services';
 
 const initialState = {
   isDark: true,
-  isUA: true
+  isUA: false
 };
 
 export const settings = (state, action) => {

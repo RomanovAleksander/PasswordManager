@@ -87,7 +87,7 @@ export const dataList = (state, action) => {
     case CREATE_ITEM:
 
       const newItem = {
-        title: '(no title)',
+        title: '-',
         id: Date.now() + Math.random(),
         user: '-',
         password: '',

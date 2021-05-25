@@ -32,7 +32,7 @@ class ItemDetails extends React.Component {
 
 
   render() {
-    const { data, fileName, removeItem, emptyBlock, activeItemId } = this.props;
+    const { data, fileName, removeItem, emptyBlock, activeItemId, isUA } = this.props;
     const item = data[findItemIndex(data, activeItemId)];
 
     if (data.length > 0) {
@@ -44,6 +44,26 @@ class ItemDetails extends React.Component {
       const secondItem = {group, created, updated};
       const mainKeys = Object.keys(mainItem);
       const secondKeys = Object.keys(secondItem);
+
+      const setKeyName = (key, isUA) => {
+        if (key === 'user') {
+          return `${isUA ? 'користувач' : key}`
+        } else if (key === 'password') {
+          return `${isUA ? 'пароль' : key}`
+        } else if (key === 'website') {
+          return `${isUA ? 'вебсайт' : key}`
+        } else if (key === 'notes') {
+          return `${isUA ? 'нотатки' : key}`
+        } else if (key === 'tags') {
+          return `${isUA ? 'теги' : key}`
+        } else if (key === 'group') {
+          return `${isUA ? 'група' : key}`
+        } else if (key === 'created') {
+          return `${isUA ? 'створено' : key}`
+        } else if (key === 'updated') {
+          return `${isUA ? 'оновлено' : key}`
+        }
+      }
 
       return (
         <div className="details">
@@ -59,7 +79,7 @@ class ItemDetails extends React.Component {
                 mainKeys.map((key) => {
                   return (
                     <div className="details__field" key={key}>
-                      <div className="details__field-label" onClick={() => this.copyInformation(mainItem[key])}>{key}</div>
+                      <div className="details__field-label" onClick={() => this.copyInformation(mainItem[key])}>{setKeyName(key, isUA)}</div>
                       <input className="details__field-value" name={key} type="text" autoComplete="off"
                              value={mainItem[key]}  onChange={this.handleInputChange} />
                     </div>
@@ -69,14 +89,14 @@ class ItemDetails extends React.Component {
             </div>
             <div className="details__body-aside">
               <div className="details__field">
-                <div className="details__field-label cursor-def">file</div>
+                <div className="details__field-label cursor-def">{`${isUA ? 'Файл' : 'file'}`}</div>
                 <div className="details__field-value">{fileName.split('.')[0]}</div>
               </div>
               {
                 secondKeys.map((key) => {
                   return (
                     <div className="details__field" key={key}>
-                      <div className="details__field-label cursor-def">{key}</div>
+                      <div className="details__field-label cursor-def">{setKeyName(key, isUA)}</div>
                       <div className="details__field-value">{secondItem[key]}</div>
                     </div>
                   )

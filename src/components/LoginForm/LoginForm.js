@@ -79,7 +79,7 @@ class LoginForm extends React.Component {
       case 'new':
         signInRequest();
         signInSuccess(masterPassword);
-        setFileName('New.txt');
+        setFileName('NewFile.txt');
 
         console.log(masterPassword);
         break;
