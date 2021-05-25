@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {searchData, createItem} from "../../actions/data/actions";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './listHeader.css';
 
 const ListHeader = ({searchData, searchText, createItem}) => {
@@ -21,10 +23,10 @@ const ListHeader = ({searchData, searchText, createItem}) => {
                      onChange={onSearchChange}
               />
               <div className="list__search-icon-search" data-title="Toggle advanced search">
-                <i className="fa fa-search"> </i>
+                <FontAwesomeIcon icon={faSearch} />
               </div>
             </div>
-            <div className="list__search-btn-new " data-title="Add New" onClick={() => createItem()}>
+            <div className="list__search-btn-new" title="Create New" onClick={() => createItem()}>
               <i className="fa fa-plus"> </i>
             </div>
           </div>

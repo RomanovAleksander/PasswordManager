@@ -43,6 +43,11 @@ input:not([type]).input-search, input[type=password].input-search, input[type=te
     padding: 0 1em;
 }
 
+.list__search-btn-new:hover {
+    transition: color .15s ease;
+    color: var(--action-color);
+}
+
 .list__search-btn-new>i {
     vertical-align: middle;
 }

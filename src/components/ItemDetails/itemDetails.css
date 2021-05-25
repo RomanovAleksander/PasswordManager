@@ -1,4 +1,5 @@
 .details {
+    position: relative;
     display: flex;
     align-items: stretch;
     flex-direction: column;
@@ -29,7 +30,7 @@
     -webkit-user-select: none;
     user-select: none;
     font-size: 2.44140625rem !important;
-    padding-top: .4em;
+    padding-top: .25em;
 }
 
 .details__header-title {
@@ -51,6 +52,7 @@
 .details__header input {
     font-size: 2.44140625rem;
     font-weight: bold;
+    padding-left: 5px;
 }
 
 .details__header-icon {
@@ -62,22 +64,23 @@
 }
 
 .details__body {
-    flex: 1;
+    /*flex: 1;*/
     display: flex;
     align-items: stretch;
     flex-direction: row;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     /*flex-direction: column;*/
-    /*justify-content: flex-start;*/
+    justify-content: flex-start;
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
 }
 
 .details__body-fields {
-    /*flex: 1 0 50%;*/
+    flex: 1 0 50%;
     min-width: 0;
     margin-right: 1em;
+    margin-top: 5px;
 }
 
 .details__field {
@@ -99,6 +102,10 @@
     line-height: 18px;
     position: relative;
     text-transform: capitalize;
+}
+
+.cursor-def {
+    cursor: default;
 }
 
 .details__field--options .details__field-value {
@@ -170,15 +177,18 @@ a {
 }
 
 .details__buttons {
+    position: absolute;
     display: flex;
     align-items: stretch;
     flex-direction: row;
     flex-shrink: 0;
-    justify-content: flex-start;
+    justify-content: flex-end;
     margin-top: .5em;
+    bottom: 0;
+    right: 0;
 }
 
-.details__buttons-trash, .details__buttons-trash-del {
+.details__buttons-trash {
     cursor: pointer;
     padding: 1em 1.2em;
     text-align: center;
@@ -187,6 +197,12 @@ a {
     color: var(--muted-color);
     align-self: flex-end;
     margin-right: 10px;
+    font-size: 1.5rem !important;
+}
+
+.details__buttons-trash:hover {
+    transition: color .15s ease;
+    color: var(--action-color);
 }
 
 .Toastify__toast {

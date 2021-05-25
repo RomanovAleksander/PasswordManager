@@ -17,7 +17,7 @@ const Footer = ({ openGenerator, setFileName, fileName }) => {
           {/*<div className="change-lng"> </div>*/}
           <ThemeSwitcher isFooter={true}/>
         </div>
-        <input id="fileName" name="fileName" type="text" autoComplete="off"
+        <input id="fileName" name="fileName" type="text" autoComplete="off" title="File Name"
                value={fileName.split('.')[0]} onChange={(event) => setFileName(`${event.target.value}.txt`)}/>
         <div className="footer__btn-wrapper">
           <div className="footer__btn footer__btn-generate" id="footer__btn-generate"

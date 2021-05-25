@@ -69,14 +69,14 @@ class ItemDetails extends React.Component {
             </div>
             <div className="details__body-aside">
               <div className="details__field">
-                <div className="details__field-label">file</div>
+                <div className="details__field-label cursor-def">file</div>
                 <div className="details__field-value">{fileName.split('.')[0]}</div>
               </div>
               {
                 secondKeys.map((key) => {
                   return (
                     <div className="details__field" key={key}>
-                      <div className="details__field-label">{key}</div>
+                      <div className="details__field-label cursor-def">{key}</div>
                       <div className="details__field-value">{secondItem[key]}</div>
                     </div>
                   )
