@@ -14,6 +14,10 @@ class LocalStorage {
   setItem(key, value) {
     return localStorage.setItem(`${key}`, JSON.stringify(value));
   }
+
+  removeItem(key) {
+    return localStorage.removeItem(`${key}`);
+  }
 }
 
 export default new LocalStorage();

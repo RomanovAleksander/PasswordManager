@@ -3,11 +3,13 @@ import {connect} from 'react-redux';
 import {ListHeader} from "../ListHeader";
 import {ItemsList} from "../ItemsList";
 import {ItemDetails} from "../ItemDetails";
+import {LocalStorageService} from "../../services";
 import './dataList.css';
 
 class DataList extends React.Component {
   componentDidMount() {
     window.onbeforeunload = function (e) {
+      LocalStorageService.removeItem('Data');
       return window.confirm("Confirm refresh");
     }
   }

@@ -39,8 +39,8 @@
 }
 
 .open__icon:hover,  .open__icon:hover .open__icon-text{
-  background: #232323;
-  color: #B8B8B8;
+  background: var(--login-icons-hover-bg);
+  color: var(--login-icons-hover-cl);
 }
 
 .open__icon i {
@@ -70,11 +70,11 @@
 }
 
 .open__icon:nth-child(-n+2) input:checked+label,  .open__icon:nth-child(-n+2) input:checked+label .open__icon-text{
-  color: #317ef6
+  color: var(--action-color)
 }
 
 .open__icon:nth-child(3):active input:checked+label,  .open__icon:nth-child(3):active input:checked+label .open__icon-text{
-  color: #317ef6
+  color: var(--action-color)
 }
 
 .open__pass-area {
@@ -156,7 +156,7 @@ button, input, optgroup, select, textarea {
 }
 
 .open__pass-enter-btn:hover {
-  color: #B8B8B8;
+  color: var(--login-icons-hover-cl);
   transition: 0.15s ease;
 }
 

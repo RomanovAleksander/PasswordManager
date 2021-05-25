@@ -4,7 +4,7 @@ import {
   SIGN_IN_FAILURE,
   SIGN_OUT
 } from '../actions/signin/types';
-// import { LocalStorageService } from '../services';
+import { LocalStorageService } from '../services';
 
 const initialState = {
   masterPassword: null,
@@ -47,7 +47,7 @@ export const authorization = (state, action) => {
         error: payload
       };
     case SIGN_OUT:
-      localStorage.clear();
+      LocalStorageService.removeItem('Data');
       return {
         ...initialState
       };

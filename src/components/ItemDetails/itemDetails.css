@@ -15,7 +15,7 @@
 }
 
 .details input:hover {
-    border: 1px solid gray;
+    border: 1px solid var(--muted-color);
 }
 
 .details__header {

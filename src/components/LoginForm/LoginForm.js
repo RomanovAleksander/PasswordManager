@@ -10,6 +10,7 @@ import { LocalStorageService }  from '../../services';
 import {FormButtons} from "../FormButtons";
 import 'react-toastify/dist/ReactToastify.css';
 import './loginForm.css';
+import {ThemeSwitcher} from "../ThemeSwitcher";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class LoginForm extends React.Component {
 
   componentDidMount() {
     window.onbeforeunload = function(e) {
-      localStorage.clear();
+      LocalStorageService.removeItem('Data');
     }
   }
 
@@ -130,6 +131,7 @@ class LoginForm extends React.Component {
   render() {
     return (
         <form className="open" onSubmit={this.onSubmit}>
+          <ThemeSwitcher isFooter={false}/>
           <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']}/>
           <input type="file" className="hidden"
                  multiple={false}

@@ -49,7 +49,6 @@ export const dataList = (state, action) => {
       return {
         ...state,
         data: payload,
-        booksQuantity: payload.length,
         loading: false,
         error: null
       };
