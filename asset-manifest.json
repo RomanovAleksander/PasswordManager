@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/PasswordManager/static/css/main.da07bfc5.chunk.css",
-    "main.js": "/PasswordManager/static/js/main.0b309db5.chunk.js",
-    "main.js.map": "/PasswordManager/static/js/main.0b309db5.chunk.js.map",
+    "main.css": "/PasswordManager/static/css/main.67b26984.chunk.css",
+    "main.js": "/PasswordManager/static/js/main.5b1f2097.chunk.js",
+    "main.js.map": "/PasswordManager/static/js/main.5b1f2097.chunk.js.map",
     "runtime-main.js": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js",
     "runtime-main.js.map": "/PasswordManager/static/js/runtime-main.1fe1ad4a.js.map",
     "static/css/2.f96985a0.chunk.css": "/PasswordManager/static/css/2.f96985a0.chunk.css",
-    "static/js/2.d4bcb106.chunk.js": "/PasswordManager/static/js/2.d4bcb106.chunk.js",
-    "static/js/2.d4bcb106.chunk.js.map": "/PasswordManager/static/js/2.d4bcb106.chunk.js.map",
+    "static/js/2.1f3c25b9.chunk.js": "/PasswordManager/static/js/2.1f3c25b9.chunk.js",
+    "static/js/2.1f3c25b9.chunk.js.map": "/PasswordManager/static/js/2.1f3c25b9.chunk.js.map",
     "index.html": "/PasswordManager/index.html",
     "static/css/2.f96985a0.chunk.css.map": "/PasswordManager/static/css/2.f96985a0.chunk.css.map",
-    "static/css/main.da07bfc5.chunk.css.map": "/PasswordManager/static/css/main.da07bfc5.chunk.css.map",
-    "static/js/2.d4bcb106.chunk.js.LICENSE.txt": "/PasswordManager/static/js/2.d4bcb106.chunk.js.LICENSE.txt",
+    "static/css/main.67b26984.chunk.css.map": "/PasswordManager/static/css/main.67b26984.chunk.css.map",
+    "static/js/2.1f3c25b9.chunk.js.LICENSE.txt": "/PasswordManager/static/js/2.1f3c25b9.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/PasswordManager/static/media/fontawesome-webfont.f691f37e.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.1fe1ad4a.js",
     "static/css/2.f96985a0.chunk.css",
-    "static/js/2.d4bcb106.chunk.js",
-    "static/css/main.da07bfc5.chunk.css",
-    "static/js/main.0b309db5.chunk.js"
+    "static/js/2.1f3c25b9.chunk.js",
+    "static/css/main.67b26984.chunk.css",
+    "static/js/main.5b1f2097.chunk.js"
   ]
 }
