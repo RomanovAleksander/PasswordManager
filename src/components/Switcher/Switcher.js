@@ -4,9 +4,9 @@ import {changeTheme, changeLanguage} from "../../actions/settings/actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
-import './themeSwitcher.css';
+import './switcher.css';
 
-class ThemeSwitcher extends React.Component {
+class Switcher extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -48,4 +48,4 @@ const mapDispatchToProps = {
   changeLanguage
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ThemeSwitcher);
+export default connect(mapStateToProps, mapDispatchToProps)(Switcher);

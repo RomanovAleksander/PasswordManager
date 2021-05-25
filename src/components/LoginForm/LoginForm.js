@@ -9,7 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { LocalStorageService }  from '../../services';
 import {FormButtons} from "../FormButtons";
 import 'react-toastify/dist/ReactToastify.css';
-import {ThemeSwitcher} from "../ThemeSwitcher";
+import {Switcher} from "../Switcher";
 import './loginForm.css';
 
 class LoginForm extends React.Component {
@@ -127,7 +127,7 @@ class LoginForm extends React.Component {
   render() {
     return (
         <form className="open" onSubmit={this.onSubmit}>
-          <ThemeSwitcher isFooter={false}/>
+          <Switcher isFooter={false}/>
           <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']} isUA={this.props.isUA}/>
           <input type="file" className="hidden"
                  multiple={false}
