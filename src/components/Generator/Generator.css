@@ -14,8 +14,8 @@
 .generator {
   position: relative;
   color: var(--text-color);
-  background: var(--background-color);
   border: 1px solid var(--light-border-color);
+  background-color: var(--secondary-background-color);
   box-shadow: 0 .15rem .5rem .25rem var(--dropdown-box-shadow-color);
   border-radius: var(--block-border-radius);
   padding: 2em;
@@ -64,7 +64,7 @@
 
 .copy__btn {
   position: absolute;
-  background: #317ef6;
+  background:transparent;
   color: #fff;
   border: none;
   height: 100%;
@@ -75,7 +75,11 @@
   transition: 0.15s ease;
 }
 
-.copy__btn:hover, .generator__btn:hover {
+.copy__btn:hover {
+  color: var(--action-background-color-active);
+}
+
+.generator__btn:hover {
   background: var(--action-background-color-active);
 }
 
@@ -107,7 +111,7 @@
 
 /*inputs*/
 .form-group input[type=number] {
-  background: #1e1e1e;
+  background: transparent;
   border: 2px solid white;
   border-radius: 3px;
 }
@@ -120,7 +124,7 @@
   display: flex;
   width: 12px;
   height: 12px;
-  background: #1e1e1e;
+  background: transparent;
   justify-content: center;
   align-items: center;
   border: 2px solid white;

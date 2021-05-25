@@ -74,15 +74,15 @@ const Generator = ({closeGenerator}) => {
         progress: undefined,
       })
     } else {
-      toast.success(message, {
-        position: 'top-center',
+      toast.dark('Copied!', {
+        position: "top-center",
         autoClose: 1000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      })
+      });
     }
   }
 
