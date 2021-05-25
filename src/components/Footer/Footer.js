@@ -5,6 +5,8 @@ import {UploadAction} from "../UploadAction";
 import './footer.css';
 import {setFileName} from "../../actions/fileActions/actions";
 import {ThemeSwitcher} from "../ThemeSwitcher";
+import {faBolt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Footer = ({ openGenerator, setFileName, fileName }) => {
 
@@ -20,7 +22,7 @@ const Footer = ({ openGenerator, setFileName, fileName }) => {
         <div className="footer__btn-wrapper">
           <div className="footer__btn footer__btn-generate" id="footer__btn-generate"
                title="Generator" onClick={() => openGenerator()}>
-            <i className="fa fa-bolt"> </i>
+            <FontAwesomeIcon icon={faBolt} />
           </div>
           <UploadAction />
         </div>
