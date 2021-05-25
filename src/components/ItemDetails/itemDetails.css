@@ -214,5 +214,6 @@ a {
 .Toastify__toast--dark {
     background-color: var(--secondary-background-color);
     border-top: 1px solid var(--light-border-color);
+    color: var(--text-color);
     min-height: 0;
 }
