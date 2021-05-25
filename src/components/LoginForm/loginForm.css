@@ -184,3 +184,18 @@ button, input, optgroup, select, textarea {
   );
 }
 
+.open-label {
+  position: relative;
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.timer {
+  position: absolute;
+  top: 36px;
+  left: 27px;
+  color: var(--muted-color);
+  font-weight: 700;
+}

@@ -19,7 +19,7 @@ class FormButton extends React.Component {
   };
 
   render() {
-    const {button} = this.props;
+    const {button, minutes, seconds} = this.props;
 
     const selectIcon = (icon) => {
       if (icon === 'open') {
@@ -51,7 +51,10 @@ class FormButton extends React.Component {
               <div className="open__icon-text">{`${this.props.isUA ? 'згенерувати' : button}`}</div>
             </label>
             :
-            <label className="" htmlFor={button}>
+            <label className={`${button}-label`} htmlFor={button}>
+              {
+                (button === 'open' && seconds > 0) ? <div className="timer">{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div> : null
+              }
               <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
               <div className="open__icon-text">{setBtnName(button, this.props.isUA)}</div>
             </label>

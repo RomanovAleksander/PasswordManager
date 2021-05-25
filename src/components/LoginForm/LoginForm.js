@@ -20,11 +20,50 @@ class LoginForm extends React.Component {
       button: 'new',
       masterPassword: '',
       isAuthorized: false,
-      fileContents: ''
+      fileContents: '',
+      failedAttempts: 0,
+      remainingBlockingTime: 60000,
+      UT: null,
+      minutes: 3,
+      seconds: 0,
     }
   }
 
   componentDidMount() {
+    if (localStorage.UT) {
+      const dateNow = new Date();
+      const ut = Date.parse(LocalStorageService.getItem('UT'));
+      this.setState({UT: ut});
+      const diff = this.calcDateDiffInMin(dateNow, ut);
+      console.log(diff);
+
+      if (diff <= 0) {
+        LocalStorageService.removeItem('UT');
+
+        this.setState({
+          failedAttempts: 0
+        });
+      } else {
+        document.querySelector('.open-label').classList.add('disable');
+        document.querySelector('#open').checked = false;
+
+        this.setTimer(diff);
+
+        this.setState({
+          UT: ut,
+          remainingBlockingTime: diff,
+          minutes: Math.floor((diff/1000/60) << 0),
+          seconds: Math.floor((diff/1000) % 60)
+        });
+
+        setTimeout(() => {
+          document.querySelector('.open-label').classList.remove('disable');
+
+          LocalStorageService.removeItem('UT');
+          console.log('3 min ended');
+        }, diff)
+      }
+    }
     window.onbeforeunload = function(e) {
       LocalStorageService.removeItem('Data');
     }
@@ -32,6 +71,7 @@ class LoginForm extends React.Component {
 
   componentWillUnmount() {
     window.onbeforeunload = null;
+    clearInterval(this.myInterval);
   }
 
   onChange = ({ target }) => {
@@ -44,21 +84,96 @@ class LoginForm extends React.Component {
     this.setState({ button });
   };
 
+  setTimer = (time) => {
+    this.myInterval = setInterval(() => {
+      // const {remainingBlockingTime} = this.state
+      const { seconds, minutes } = this.state
+
+      if (seconds > 0) {
+        this.setState(({ seconds }) => ({
+          seconds: seconds - 1
+        }))
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(this.myInterval)
+        } else {
+          this.setState(({ minutes }) => ({
+            minutes: minutes - 1,
+            seconds: 59
+          }))
+        }
+      }
+    }, 1000)
+  }
+
+  calcDateDiffInMin = (oldDate, date) => {
+    const diffMs = (date - oldDate);
+    // return Math.round(((diffMs % 86400000) % 3600000) / 60000);
+    return diffMs;
+  }
+
   checkCypher = (data, masterPassword) => {
     const { signInRequest, signInSuccess, signInError, dataLoaded, isUA } = this.props;
     signInRequest();
 
-    if (data === 'Invalid Password' ||  !data) {
-      signInError('Invalid Password');
-      toast.error(`${isUA ? 'Невірний пароль' : 'Invalid Password'}`, {
-        position: 'top-center',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+    if (data === 'Invalid Password' || !data) {
+      this.setState({
+        masterPassword: ''
       });
+      signInError('Invalid Password');
+      this.setState({failedAttempts: this.state.failedAttempts + 1}, () => {
+        toast.error(`${isUA ? `Невірний пароль, залишилось ${5 - this.state.failedAttempts} спроби` : `Invalid password, ${5 - this.state.failedAttempts} attempts left`}`, {
+          position: 'top-center',
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+
+      if (this.state.failedAttempts >= 4) {
+        document.querySelector('.open-label').classList.add('disable');
+        document.querySelector('#open').checked = false;
+
+        const dateNow = new Date();
+        const unlockTime = new Date(dateNow.getTime() + 3 * 60000);
+        const diff = this.calcDateDiffInMin(dateNow, unlockTime);
+
+        this.setTimer(diff);
+
+        this.setState({
+          UT: unlockTime,
+          remainingBlockingTime: diff,
+          minutes: Math.floor((diff/1000/60) << 0),
+          seconds: Math.floor((diff/1000) % 60)
+        });
+
+        setTimeout(() => {
+          console.log('3 min ended');
+          document.querySelector('.open-label').classList.remove('disable');
+          LocalStorageService.removeItem('UT');
+
+          this.setState({
+            failedAttempts: 0
+          });
+        }, diff);
+
+        console.log(diff);
+        LocalStorageService.setItem('UT', unlockTime.toString());
+
+        toast.error(`${isUA ? `Можливість введення паролю заблоковано на 3 хвилини` : 'The ability to enter the password is blocked for 3 minutes'}`, {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } else {
       signInSuccess(masterPassword);
       dataLoaded(data);
@@ -90,7 +205,7 @@ class LoginForm extends React.Component {
         signInSuccess(masterPassword);
         setFileName('NewFile.txt');
 
-        console.log(masterPassword);
+        // console.log(masterPassword);
         break;
 
       default:
@@ -125,10 +240,16 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const { minutes, seconds } = this.state;
+
     return (
         <form className="open" onSubmit={this.onSubmit}>
           <Switcher isFooter={false}/>
-          <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']} isUA={this.props.isUA}/>
+          <FormButtons onButtonChange={this.onButtonChange}
+                       buttons={['open', 'new', 'generate']}
+                       isUA={this.props.isUA} minutes={minutes}
+                       seconds={seconds}
+          />
           <input type="file" className="hidden"
                  multiple={false}
                  accept=".txt"
@@ -139,7 +260,7 @@ class LoginForm extends React.Component {
             <div className="open__pass-field-wrap">
               <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password"
                      maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть пароль' : 'Enter password'}`} readOnly="" tabIndex="23" required
-                     onChange={this.onChange}
+                     onChange={this.onChange} value={this.state.masterPassword}
               />
               <button className="open__pass-enter-btn" tabIndex="24" type="submit">
                 <i className="fa fa-level-down rotate-90 open__pass-enter-btn-icon-enter"/>
