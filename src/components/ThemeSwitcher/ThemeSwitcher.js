@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {changeTheme} from "../../actions/settings/actions";
+import {changeTheme, changeLanguage} from "../../actions/settings/actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +21,7 @@ class ThemeSwitcher extends React.Component {
   }
 
   render() {
-    const { isDark, isFooter } = this.props;
+    const { isDark, isUA, isFooter, changeLanguage } = this.props;
     return (
       <div className={isFooter ? 'switch-rel' : 'switch-abs'}>
         <input type="checkbox" className="checkbox" id="chk" defaultChecked={isDark}/>
@@ -30,6 +30,7 @@ class ThemeSwitcher extends React.Component {
           <FontAwesomeIcon icon={faSun} />
           <div className="ball"/>
         </label>
+        <div className={`change-lng ${isFooter ? 'right-lng' : 'left-lng'}`} onClick={() => changeLanguage()}>{isUA ? 'UA' : 'EN'}</div>
       </div>
     )
   }
@@ -37,12 +38,14 @@ class ThemeSwitcher extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isDark: state.settings.isDark
+    isDark: state.settings.isDark,
+    isUA: state.settings.isUA
   }
 };
 
 const mapDispatchToProps = {
-  changeTheme
+  changeTheme,
+  changeLanguage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemeSwitcher);

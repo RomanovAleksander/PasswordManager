@@ -52,7 +52,27 @@
   transform: translateX(24px);
 }
 
-
 .fa-moon .fa-sun{
   color: var(--text-color);
+}
+
+.change-lng {
+  position: absolute;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.right-lng {
+  top: 6px;
+  left: 85px;
+}
+
+.left-lng {
+  top: -3px;
+  right: 73px;
+}
+
+.change-lng:hover {
+  color: var(--action-color);
+  transition: 0.15s color;
 }

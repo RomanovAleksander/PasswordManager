@@ -15,7 +15,6 @@ const Footer = ({ openGenerator, setFileName, changeLanguage, fileName }) => {
     <div className="app__footer">
       <div className="footer">
         <div className="footer__btn-wrapper">
-          <div className="change-lng" onClick={() => changeLanguage()}> </div>
           <ThemeSwitcher isFooter={true}/>
         </div>
         <input id="fileName" name="fileName" type="text" autoComplete="off" title="File Name"
