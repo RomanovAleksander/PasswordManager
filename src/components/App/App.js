@@ -7,6 +7,11 @@ import {DataList} from "../DataList";
 import './App.css';
 
 class App extends React.Component {
+  componentDidMount() {
+    const { isDark } = this.props;
+    document.body.className = isDark ? 'th-dark': 'th-light';
+  }
+
   render() {
     const {isAuthorized, isOpen} = this.props;
     return (
@@ -24,7 +29,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isAuthorized: state.authorization.isAuthorized,
-    isOpen: state.generator.isOpen
+    isOpen: state.generator.isOpen,
+    isDark: state.settings.isDark
   }
 };
 

@@ -21,10 +21,11 @@ class ThemeSwitcher extends React.Component {
   }
 
   render() {
+    const { isDark, isFooter } = this.props;
     return (
-      <div className={this.props.isFooter ? 'switch-rel' : 'switch-abs'}>
-        <input type="checkbox" className="checkbox" id="chk" onChange={this.toggleTheme}/>
-        <label className="label" htmlFor="chk">
+      <div className={isFooter ? 'switch-rel' : 'switch-abs'}>
+        <input type="checkbox" className="checkbox" id="chk" defaultChecked={isDark}/>
+        <label className="label" htmlFor="chk" onClick={this.toggleTheme}>
           <FontAwesomeIcon icon={faMoon} />
           <FontAwesomeIcon icon={faSun} />
           <div className="ball"/>
