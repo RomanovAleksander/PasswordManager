@@ -118,7 +118,6 @@ class LoginForm extends React.Component {
       this.props.setFileName(fileName);
       LocalStorageService.setItem('Data', fileContents);
 
-      //check is password valid
       const data = decryptData(fileContents, this.state.masterPassword);
       this.checkCypher(data, this.state.masterPassword);
     }
@@ -132,7 +131,7 @@ class LoginForm extends React.Component {
     return (
         <form className="open" onSubmit={this.onSubmit}>
           <ThemeSwitcher isFooter={false}/>
-          <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']}/>
+          <FormButtons onButtonChange={this.onButtonChange} buttons={['open', 'new', 'generate']} isUA={this.props.isUA}/>
           <input type="file" className="hidden"
                  multiple={false}
                  accept=".txt"
@@ -142,7 +141,7 @@ class LoginForm extends React.Component {
           <div className="open__pass-area">
             <div className="open__pass-field-wrap">
               <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password"
-                     maxLength="1024" placeholder="Enter password" readOnly="" tabIndex="23" required
+                     maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть пароль' : 'Enter password'}`} readOnly="" tabIndex="23" required
                      onChange={this.onChange}
               />
               <button className="open__pass-enter-btn" tabIndex="24" type="submit">
@@ -172,7 +171,8 @@ const mapStateToProps = (state) => {
     isAuthorized: state.authorization.isAuthorized,
     loading: state.authorization.loading,
     error: state.authorization.error,
-    data: state.dataList.data
+    data: state.dataList.data,
+    isUA: state.settings.isUA
   }
 };
 

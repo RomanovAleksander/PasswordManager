@@ -1,10 +1,12 @@
 import {
-  CHANGE_THEME
+  CHANGE_THEME,
+  CHANGE_LANGUAGE
 } from '../actions/settings/types';
 import { LocalStorageService } from '../services';
 
 const initialState = {
-  isDark: true
+  isDark: true,
+  isUA: true
 };
 
 export const settings = (state, action) => {
@@ -13,6 +15,11 @@ export const settings = (state, action) => {
       return {
         ...initialState,
         isDark: LocalStorageService.getItem('isDark')
+      }
+    }  else if (localStorage.isUA) {
+      return {
+        ...initialState,
+        isUA: LocalStorageService.getItem('isUA')
       }
     } else {
     return initialState
@@ -26,6 +33,12 @@ export const settings = (state, action) => {
       return {
         ...state,
         isDark: payload
+      };
+    case CHANGE_LANGUAGE:
+      LocalStorageService.setItem('isUA', !state.isUA);
+      return {
+        ...state,
+        isUA: !state.isUA
       };
 
     default:

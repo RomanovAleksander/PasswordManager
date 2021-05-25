@@ -21,6 +21,7 @@
 
 .open__icon-text {
   color: var(--muted-color);
+  padding-top: 6px;
 }
 
 .open__icon {

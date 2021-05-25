@@ -7,13 +7,12 @@ import {
   lowerCaseLetters,
   specialCharacters,
 } from '../../utils/characters';
-import {COPY_SUCCESS} from '../../utils/message';
 import {closeGenerator} from "../../actions/generator/actions";
 import {copyToClipboard} from '../../utils/copyToClipboard';
 import 'react-toastify/dist/ReactToastify.css';
 import './Generator.css';
 
-const Generator = ({closeGenerator}) => {
+const Generator = ({closeGenerator, isUA}) => {
   const [password, setPassword] = useState('')
   const [passwordLength, setPasswordLength] = useState(20)
   const [includeUppercase, setIncludeUppercase] = useState(false)
@@ -28,7 +27,7 @@ const Generator = ({closeGenerator}) => {
       !includeNumbers &&
       !includeSymbols
     ) {
-      notify('You must Select at least one option', true)
+      notify(`${ isUA ? 'Ви повинні вибрати принаймні один варіант' : 'You must select at least one option'}`, true)
     }
     let characterList = ''
 
@@ -74,7 +73,7 @@ const Generator = ({closeGenerator}) => {
         progress: undefined,
       })
     } else {
-      toast.dark('Copied!', {
+      toast.dark(`${ isUA ? 'Скопійовано' : 'Copied'}`, {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: true,
@@ -88,10 +87,10 @@ const Generator = ({closeGenerator}) => {
 
   const handleCopyPassword = (e) => {
     if (password === '') {
-      notify('Nothing To Copy', true)
+      notify(`${ isUA ? 'Копіювати нічого' : 'Nothing To Copy'}`, true)
     } else {
-      copyToClipboard(password)
-      notify(COPY_SUCCESS)
+      copyToClipboard(password);
+      notify(`${ isUA ? 'Пароль успішно скопійовано в буфер обміну' : 'Password successfully copied to clipboard'}`)
     }
   }
 
@@ -99,7 +98,7 @@ const Generator = ({closeGenerator}) => {
     <div className='container'>
       <div className='generator'>
         <div className="generator__close" onClick={() => closeGenerator()}>X</div>
-        <h2 className='generator__header'>Password Generator</h2>
+        <h2 className='generator__header'>{ isUA ? 'Генератор Паролю' : 'Password Generator' }</h2>
         <div className='generator__password'>
           <div>{password}</div>
           <button onClick={handleCopyPassword} className='copy__btn'>
@@ -108,7 +107,7 @@ const Generator = ({closeGenerator}) => {
         </div>
 
         <div className='form-group'>
-          <label htmlFor='password-strength'>Password length</label>
+          <label htmlFor='password-strength'>{ isUA ? 'Довжина паролю' : 'Password length' }</label>
           <input
             defaultValue={passwordLength}
             onChange={(e) => setPasswordLength(e.target.value)}
@@ -121,7 +120,7 @@ const Generator = ({closeGenerator}) => {
         </div>
 
         <div className='form-group'>
-          <span>Include Uppercase Letters</span>
+          <span>{ isUA ? 'Використовувати великі літери' : 'Include Uppercase Letters' }</span>
           <input
             checked={includeUppercase}
             onChange={(e) => setIncludeUppercase(e.target.checked)}
@@ -133,7 +132,7 @@ const Generator = ({closeGenerator}) => {
         </div>
 
         <div className='form-group'>
-          <span>Include Lowercase Letters</span>
+          <span>{ isUA ? 'Використовувати маленькі літери' : 'Include Lowercase Letters' }</span>
           <input
             checked={includeLowercase}
             onChange={(e) => setIncludeLowercase(e.target.checked)}
@@ -146,7 +145,7 @@ const Generator = ({closeGenerator}) => {
         </div>
 
         <div className='form-group'>
-          <span>Include Numbers</span>
+          <span>{ isUA ? 'Використовувати числа' : 'Include Numbers' }</span>
           <input
             checked={includeNumbers}
             onChange={(e) => setIncludeNumbers(e.target.checked)}
@@ -158,7 +157,7 @@ const Generator = ({closeGenerator}) => {
         </div>
 
         <div className='form-group'>
-          <span>Include Symbols</span>
+          <span>{ isUA ? 'Використовувати символи' : 'Include Numbers' }</span>
           <input
             checked={includeSymbols}
             onChange={(e) => setIncludeSymbols(e.target.checked)}
@@ -170,7 +169,7 @@ const Generator = ({closeGenerator}) => {
         </div>
 
         <button onClick={handleGeneratePassword} className='generator__btn btn'>
-          Generate Password
+          { isUA ? 'Згенерувати пароль' : 'Generate Password' }
         </button>
         <ToastContainer
           position='top-center'

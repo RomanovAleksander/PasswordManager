@@ -12,7 +12,7 @@ class DataList extends React.Component {
   componentDidMount() {
     window.onbeforeunload = function (e) {
       LocalStorageService.removeItem('Data');
-      return window.confirm("Confirm refresh");
+      return window.confirm();
     }
   }
 
@@ -21,41 +21,43 @@ class DataList extends React.Component {
   }
 
   render() {
-    const {data, activeItemId} = this.props;
+    const {data, activeItemId, isUA} = this.props;
     return (
       <div className="app-list-wrap">
         <div className="app__list">
           <div className="list">
             <ListHeader/>
             <div className="list__items" data-baron-v-id="2">
-              {data.length ? <ItemsList/> : emptyBlockList()}
+              {data.length ? <ItemsList/> : emptyBlockList(isUA)}
             </div>
           </div>
         </div>
         <div className="app__details">
-          {activeItemId ? <ItemDetails emptyBlock={emptyDetailsBlock()}/> : emptyDetailsBlock()}
+          {activeItemId ? <ItemDetails emptyBlock={emptyDetailsBlock(isUA)}/> : emptyDetailsBlock(isUA)}
         </div>
       </div>
     );
   }
 }
 
-const emptyBlockList = () => {
+const emptyBlockList = (isUA) => {
   return (
     <div className="empty-block muted-color">
       <div className="empty-block__icon"><i className="fa fa-key" /></div>
-      <h1 className="empty-block__title">Empty</h1>
+      <h1 className="empty-block__title">{ isUA ? 'Пусто' : 'Empty' }</h1>
       <p className="empty-block__text">
-        add with <FontAwesomeIcon icon={faPlus} /> button above
+        {isUA ? 'додати за допомогою ' : 'add with '}
+        <FontAwesomeIcon icon={faPlus} />
+        {isUA ? ' кнопки вище' : ' button above'}
       </p>
     </div>
   );
 };
 
-const emptyDetailsBlock = () => {
+const emptyDetailsBlock = (isUA) => {
   return (
     <div className="empty-block muted-color">
-      <h1 className="empty-block__title">Your passwords will be displayed here</h1>
+      <h1 className="empty-block__title">{ isUA ? 'Ваші паролі будуть відображатися тут' : 'Your passwords will be displayed here'}</h1>
     </div>
   );
 };
@@ -63,7 +65,8 @@ const emptyDetailsBlock = () => {
 const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
-    activeItemId: state.dataList.activeItemId
+    activeItemId: state.dataList.activeItemId,
+    isUA: state.settings.isUA
   }
 };
 

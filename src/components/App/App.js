@@ -13,11 +13,11 @@ class App extends React.Component {
   }
 
   render() {
-    const {isAuthorized, isOpen} = this.props;
+    const {isAuthorized, isOpen, isUA} = this.props;
     return (
       <>
         <div className="app__body">
-          {isOpen ? <Generator /> : null}
+          {isOpen ? <Generator isUA={isUA} /> : null}
           {isAuthorized ? <DataList /> : <LoginForm />}
         </div>
         {isAuthorized ? <Footer /> : null}
@@ -30,7 +30,8 @@ const mapStateToProps = (state) => {
   return {
     isAuthorized: state.authorization.isAuthorized,
     isOpen: state.generator.isOpen,
-    isDark: state.settings.isDark
+    isDark: state.settings.isDark,
+    isUA: state.settings.isUA
   }
 };
 

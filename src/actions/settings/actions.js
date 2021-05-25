@@ -1,5 +1,6 @@
 import {
-  CHANGE_THEME
+  CHANGE_THEME,
+  CHANGE_LANGUAGE
 } from './types';
 
 const changeTheme = (theme) => {
@@ -9,6 +10,13 @@ const changeTheme = (theme) => {
   }
 };
 
+const changeLanguage = () => {
+  return {
+    type:  CHANGE_LANGUAGE
+  }
+};
+
 export {
-  changeTheme
+  changeTheme,
+  changeLanguage
 };

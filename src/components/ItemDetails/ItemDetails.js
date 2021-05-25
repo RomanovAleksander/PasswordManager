@@ -19,7 +19,7 @@ class ItemDetails extends React.Component {
 
   copyInformation = (value) => {
     copyToClipboard(value);
-    toast.dark('Copied!', {
+    toast.dark(`${ this.props.isUA ? 'Скопійовано' : 'Copied'}`, {
       position: "top-right",
       autoClose: 1000,
       hideProgressBar: true,
@@ -112,7 +112,8 @@ const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
     activeItemId: state.dataList.activeItemId,
-    fileName: state.file.fileName
+    fileName: state.file.fileName,
+    isUA: state.settings.isUA
   }
 };
 

@@ -2,19 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {openGenerator} from "../../actions/generator/actions";
 import {UploadAction} from "../UploadAction";
-import './footer.css';
 import {setFileName} from "../../actions/fileActions/actions";
+import {changeLanguage} from "../../actions/settings/actions";
 import {ThemeSwitcher} from "../ThemeSwitcher";
 import {faBolt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import './footer.css';
 
-const Footer = ({ openGenerator, setFileName, fileName }) => {
+const Footer = ({ openGenerator, setFileName, changeLanguage, fileName }) => {
 
   return (
     <div className="app__footer">
       <div className="footer">
         <div className="footer__btn-wrapper">
-          {/*<div className="change-lng"> </div>*/}
+          <div className="change-lng" onClick={() => changeLanguage()}> </div>
           <ThemeSwitcher isFooter={true}/>
         </div>
         <input id="fileName" name="fileName" type="text" autoComplete="off" title="File Name"
@@ -39,7 +40,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   openGenerator,
-  setFileName
+  setFileName,
+  changeLanguage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

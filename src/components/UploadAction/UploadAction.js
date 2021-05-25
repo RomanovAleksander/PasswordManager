@@ -49,12 +49,13 @@ class UploadAction extends React.Component {
   }
 
   render() {
-    const { isConfirmOpen, openConfirmBox, fileName } = this.props;
+    const { isConfirmOpen, openConfirmBox, fileName, isUA } = this.props;
     return (
       <>
         {isConfirmOpen ? <ConfirmBox openConfirmBox={openConfirmBox}
                                      handleLogOut={() => this.logOut(false)}
                                      handleSaveAndLogOut={() => this.logOut(true)}
+                                     isUA={isUA}
         /> : null}
         <div className="footer__btn footer__btn-lock" id="footer__btn-lock"
              data-title="Lock" onClick={() => this.download(false)} title="Save">
@@ -80,6 +81,7 @@ const mapStateToProps = (state) => {
     fileName: state.file.fileName,
     isSave: state.file.isSave,
     isConfirmOpen: state.file.isConfirmOpen,
+    isUA: state.settings.isUA,
   }
 };
 

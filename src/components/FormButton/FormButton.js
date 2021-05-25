@@ -31,6 +31,14 @@ class FormButton extends React.Component {
       }
     };
 
+    const setBtnName = (button, isUA) => {
+      if (button === 'open') {
+        return `${isUA ? 'відкрити' : button}`
+      } else if (button === 'new') {
+        return `${isUA ? 'новий' : button}`
+      }
+    };
+
     return (
       <>
         <input id={button} type="radio" value={button} name="category"
@@ -40,12 +48,12 @@ class FormButton extends React.Component {
           button === 'generate' ?
             <label className="" onClick={() => this.props.openGenerator()}>
               <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
-              <div className="open__icon-text">{button}</div>
+              <div className="open__icon-text">{`${this.props.isUA ? 'згенерувати' : button}`}</div>
             </label>
             :
             <label className="" htmlFor={button}>
               <i className={`fa ${selectIcon(button)} open__icon-i`}> </i>
-              <div className="open__icon-text">{button}</div>
+              <div className="open__icon-text">{setBtnName(button, this.props.isUA)}</div>
             </label>
         }
       </>

@@ -17,14 +17,14 @@ export default class FormButtons extends React.Component {
   };
 
   render() {
-    const {buttons} = this.props;
+    const {buttons, isUA} = this.props;
     return (
       <div className="open__icons">
         {
           buttons.map((button) => {
             return (
               <div className="open__icon open__icon-open" key={button}>
-                <FormButton button={button} changeButton={this.handleChange} key={button}/>
+                <FormButton button={button} changeButton={this.handleChange} key={button} isUA={isUA}/>
               </div>
             )
           })
