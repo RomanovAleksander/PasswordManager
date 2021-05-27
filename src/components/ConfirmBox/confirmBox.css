@@ -9,8 +9,8 @@
     box-shadow: 0 .15rem .5rem .25rem var(--dropdown-box-shadow-color);
     border-radius: var(--block-border-radius);
     padding: 2em;
-    width: 22em;
-    font-size: 1.3rem
+    width: 26em;
+    font-size: 1.3rem;
 }
 
 .confirm-box__message {
@@ -24,7 +24,7 @@
 }
 
 .confirm-box__btn {
-    width: 30%;
+    width: 31%;
 }
 
 .cancel-btn {

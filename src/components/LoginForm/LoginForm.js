@@ -88,9 +88,8 @@ class LoginForm extends React.Component {
     this.setState({ button });
   };
 
-  setTimer = (time) => {
+  setTimer = () => {
     this.myInterval = setInterval(() => {
-      // const {remainingBlockingTime} = this.state
       const { seconds, minutes } = this.state
 
       if (seconds > 0) {
@@ -148,8 +147,6 @@ class LoginForm extends React.Component {
         const unlockTime = new Date(dateNow.getTime() + 3 * 60000);
         const diff = this.calcDateDiffInMin(dateNow, unlockTime);
 
-        this.setTimer(diff);
-
         this.setState({
           UT: unlockTime,
           remainingBlockingTime: diff,
@@ -157,8 +154,9 @@ class LoginForm extends React.Component {
           seconds: Math.floor((diff/1000) % 60)
         });
 
+        this.setTimer();
+
         setTimeout(() => {
-          console.log('3 min ended');
           document.querySelector('.open-label').classList.remove('label-disable');
           document.querySelector('.open__icon').classList.remove('open-icon-disable');
           document.querySelector('.open__icon-text').classList.remove('open-icon-text-disable');
@@ -169,7 +167,6 @@ class LoginForm extends React.Component {
           });
         }, diff);
 
-        console.log(diff);
         LocalStorageService.setItem('UT', unlockTime.toString());
 
         toast.error(`${isUA ? `Можливість введення паролю заблоковано на 3 хвилини` : 'The ability to enter the password is blocked for 3 minutes'}`, {
