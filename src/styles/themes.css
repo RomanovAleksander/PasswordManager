@@ -1,44 +1,27 @@
 .th-dark {
   --muted-color: #4c4c4c;
-  --muted-color-border: #353535;
-  --text-selection-bg-color: rgba(49,126,246,0.3);
-  --text-selection-bg-color-error: rgba(236,101,90,0.8);
+  --disabled-color: #4c4c4c;
+
   --text-semi-muted-color: #f6f6f7;
   --text-contrast-action-color: #f7f7f7;
-  --text-contrast-error-color: #f7f7f7;
+
   --base-border-color: #6b6b6b;
-  --accent-border-color: #818182;
   --light-border-color: #3d3d3d;
+
   --form-box-border-color-focus: #6ca2f6;
-  --form-box-shadow-color-focus: rgba(108,162,246,0.7);
-  --form-box-shadow-color-hover: rgba(108,162,246,0.5);
-  --form-box-shadow-color-focus-error: rgba(233,80,67,0.7);
+
   --secondary-background-color: #2d2d2d;
-  --intermediate-background-color: #232323;
-  --intermediate-pressed-background-color: #222;
-  --disabled-background-color: #1d1d1d;
-  --unselected-background-color: #2c2c2c;
-  --unselected-background-color-hover: #333334;
-  --action-background-color-focus: #2765c5;
-  --action-background-color-focus-tr: rgba(39,101,197,0.1);
+
   --action-background-color-active: #255fb9;
-  --action-background-color-active-tr: rgba(37,95,185,0.15);
-  --modal-background-color: rgba(30,30,30,0.9);
-  --modal-background-color-tr: rgba(30,30,30,0);
   --selected-item-color: #2e70d6;
-  --selected-on-secondary-item-color: #4c4c4c;
-  --selectable-on-secondary-item-color: #333334;
   --clickable-on-secondary-color: #919192;
-  --titlebar-button-background-color: hsla(0,0%,96.9%,0.085);
-  --mute-percent: 30%;
-  --modal-opacity: 0.9;
+
+
   --background-color: #1e1e1e;
-  --medium-color: #b7b7b8;
+
   --text-color: #f7f7f7;
   --action-color: #317ef6;
 
-  --focus-shadow-spread: 3px;
-  --button-border-radius: 3px;
   --input-border-radius: 4px;
   --block-border-radius: 5px;
   --selected-item-text-color: var(--text-color);
@@ -47,66 +30,34 @@
 
   --white-color: #d8e5f1;
   --black-color: #111;
-  --red-color: #ed5f5e;
-  --orange-color: #e8873a;
-  --yellow-color: #f7c644;
-  --green-color: #78b756;
-  --blue-color: #2f7cf7;
-  --violet-color: #e55d9c;
 
   --login-icons-hover-bg: #232323;
   --login-icons-hover-cl: #B8B8B8;
 }
 
 .th-light {
-  --form-box-shadow-color-focus: #90b2f2;
+  --disabled-color: #e5e5e5;
   --selected-item-text-color: #f6f6f6;
   --open-icon-color: #565656;
-
   --muted-color: #a1a1a1;
-  --muted-color-border: #ccc;
-  --text-selection-bg-color: rgba(48,99,212,0.3);
-  --text-selection-bg-color-error: rgba(236,101,90,0.8);
+
   --text-semi-muted-color: #303031;
   --text-contrast-action-color: #f6f6f6;
-  --text-contrast-error-color: #f6f6f6;
+
   --base-border-color: #a1a1a1;
-  --accent-border-color: #888;
   --light-border-color: #d4d4d4;
   --form-box-border-color-focus: #3054a3;
-  --form-box-shadow-color-focus: rgba(48,84,163,0.7);
-  --form-box-shadow-color-hover: rgba(48,84,163,0.5);
-  --form-box-shadow-color-focus-error: rgba(233,80,67,0.7);
+
   --secondary-background-color: #e5e5e5;
-  --intermediate-background-color: #f1f1f1;
-  --intermediate-pressed-background-color: #f2f2f2;
-  --disabled-background-color: #eaeaea;
-  --unselected-background-color: #e7e7e7;
-  --unselected-background-color-hover: #dedede;
-  --action-background-color-focus: #264faa;
-  --action-background-color-focus-tr: rgba(38,79,170,0.1);
   --action-background-color-active: #244a9f;
-  --action-background-color-active-tr: rgba(36,74,159,0.15);
-  --modal-background-color: hsla(0,0%,96.5%,0.9);
-  --modal-background-color-tr: hsla(0,0%,96.5%,0);
+
   --selected-item-color: #4e79d9;
-  --selected-on-secondary-item-color: #c3c3c3;
-  --selectable-on-secondary-item-color: #dedede;
   --clickable-on-secondary-color: #777;
-  --titlebar-button-background-color: rgba(48,48,48,0.085);
-  --mute-percent: 50%;
-  --modal-opacity: 0.9;
 
   --white-color: #d8e5f1;
   --black-color: #111;
-  --red-color: #d04745;
-  --orange-color: #e9873a;
-  --yellow-color: #f7c84e;
-  --green-color: #79b656;
-  --blue-color: #2f7cf7;
-  --violet-color: #e55d9c;
+
   --background-color: #f6f6f6;
-  --medium-color: #4c4c4c;
   --text-color: #303030;
   --action-color: #3063d4;
 
@@ -115,13 +66,4 @@
 
   --login-icons-hover-bg: #F1F1F1;
   --login-icons-hover-cl: #4C4C4C;
-}
-.th-light {
-  --error-background-color-focus: #bd5148;
-  --error-background-color-focus-tr: rgba(189,81,72,0.1);
-  --error-background-color-active: #b14c44;
-  --error-background-color-active-tr: rgba(177,76,68,0.15);
-  --light-border-percent: 20%;
-  --color-lightness-shift: 0;
-  --error-color: #ec655a;
 }

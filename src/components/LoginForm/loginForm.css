@@ -39,8 +39,12 @@
   height: 100px;
 }
 
-.open__icon:hover,  .open__icon:hover .open__icon-text{
+.open__icon:hover {
   background: var(--login-icons-hover-bg);
+  color: var(--login-icons-hover-cl);
+}
+
+.open__icon:hover .open__icon-text{
   color: var(--login-icons-hover-cl);
 }
 
@@ -188,14 +192,32 @@ button, input, optgroup, select, textarea {
   position: relative;
 }
 
-.disable {
+.label-disable {
   pointer-events: none;
+}
+
+.open-icon-disable {
+  cursor: default;
+}
+
+.open-icon-text-disable {
+  color: var(--muted-color);
+}
+
+.open-icon-disable:hover {
+  cursor: default;
+  background: transparent;
+  color: var(--open-icon-color);
+}
+
+.open-icon-disable:hover .open-icon-text-disable {
+  color: var(--muted-color);
 }
 
 .timer {
   position: absolute;
   top: 36px;
   left: 27px;
-  color: var(--muted-color);
+  color: var(--disabled-color);
   font-weight: 700;
 }

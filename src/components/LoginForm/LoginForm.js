@@ -44,7 +44,9 @@ class LoginForm extends React.Component {
           failedAttempts: 0
         });
       } else {
-        document.querySelector('.open-label').classList.add('disable');
+        document.querySelector('.open-label').classList.add('label-disable');
+        document.querySelector('.open__icon').classList.add('open-icon-disable');
+        document.querySelector('.open__icon-text').classList.add('open-icon-text-disable');
         document.querySelector('#open').checked = false;
 
         this.setTimer(diff);
@@ -57,7 +59,9 @@ class LoginForm extends React.Component {
         });
 
         setTimeout(() => {
-          document.querySelector('.open-label').classList.remove('disable');
+          document.querySelector('.open-label').classList.remove('label-disable');
+          document.querySelector('.open__icon').classList.remove('open-icon-disable');
+          document.querySelector('.open__icon-text').classList.remove('open-icon-text-disable');
 
           LocalStorageService.removeItem('UT');
           console.log('3 min ended');
@@ -135,7 +139,9 @@ class LoginForm extends React.Component {
       });
 
       if (this.state.failedAttempts >= 4) {
-        document.querySelector('.open-label').classList.add('disable');
+        document.querySelector('.open-label').classList.add('label-disable');
+        document.querySelector('.open__icon').classList.add('open-icon-disable');
+        document.querySelector('.open__icon-text').classList.add('open-icon-text-disable');
         document.querySelector('#open').checked = false;
 
         const dateNow = new Date();
@@ -153,7 +159,9 @@ class LoginForm extends React.Component {
 
         setTimeout(() => {
           console.log('3 min ended');
-          document.querySelector('.open-label').classList.remove('disable');
+          document.querySelector('.open-label').classList.remove('label-disable');
+          document.querySelector('.open__icon').classList.remove('open-icon-disable');
+          document.querySelector('.open__icon-text').classList.remove('open-icon-text-disable');
           LocalStorageService.removeItem('UT');
 
           this.setState({

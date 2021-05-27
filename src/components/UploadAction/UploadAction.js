@@ -45,6 +45,7 @@ class UploadAction extends React.Component {
       this.download(true);
     } else {
       this.props.userSignOut();
+      this.props.dataRequested();
     }
   }
 
