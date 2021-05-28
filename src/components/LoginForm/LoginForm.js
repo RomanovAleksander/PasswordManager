@@ -263,11 +263,11 @@ class LoginForm extends React.Component {
           />
           <div className="open__pass-area">
             <div className="open__pass-field-wrap">
-              <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password"
+              <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password" minLength="6"
                      maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть пароль' : 'Enter password'}`} readOnly="" tabIndex="23" required
                      onChange={this.onChange} value={this.state.masterPassword}
               />
-              <button className="open__pass-enter-btn" tabIndex="24" type="submit">
+              <button className="open__pass-enter-btn" type="submit">
                 <i className="fa fa-level-down rotate-90 open__pass-enter-btn-icon-enter"/>
                 <i className="fa fa-fingerprint open__pass-enter-btn-icon-touch-id"/>
               </button>

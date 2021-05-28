@@ -27,6 +27,23 @@
     position: relative;
 }
 
+@media (max-width: 701px) {
+    .app-list-wrap, .app_body {
+        flex-direction: column;
+    }
+
+    .app__list {
+        flex: 0 0 295px;
+        border-bottom: 1px solid var(--light-border-color);
+    }
+}
+
+@media (max-width: 568px) {
+    .app__list {
+        flex: 0 0 193px;
+    }
+}
+
 .list {
     justify-content: flex-start;
     overflow: hidden;
