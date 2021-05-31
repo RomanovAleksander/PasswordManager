@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
       const ut = Date.parse(LocalStorageService.getItem('UT'));
       this.setState({UT: ut});
       const diff = this.calcDateDiffInMin(dateNow, ut);
-      console.log(diff);
+      // console.log(diff);
 
       if (diff <= 0) {
         LocalStorageService.removeItem('UT');
@@ -64,7 +64,7 @@ class LoginForm extends React.Component {
           document.querySelector('.open__icon-text').classList.remove('open-icon-text-disable');
 
           LocalStorageService.removeItem('UT');
-          console.log('3 min ended');
+          // console.log('3 min ended');
         }, diff)
       }
     }
