@@ -35,7 +35,6 @@ class LoginForm extends React.Component {
       const ut = Date.parse(LocalStorageService.getItem('UT'));
       this.setState({UT: ut});
       const diff = this.calcDateDiffInMin(dateNow, ut);
-      // console.log(diff);
 
       if (diff <= 0) {
         LocalStorageService.removeItem('UT');
@@ -64,7 +63,6 @@ class LoginForm extends React.Component {
           document.querySelector('.open__icon-text').classList.remove('open-icon-text-disable');
 
           LocalStorageService.removeItem('UT');
-          // console.log('3 min ended');
         }, diff)
       }
     }
@@ -112,7 +110,7 @@ class LoginForm extends React.Component {
 
   calcDateDiffInMin = (oldDate, date) => {
     const diffMs = (date - oldDate);
-    // return Math.round(((diffMs % 86400000) % 3600000) / 60000);
+
     return diffMs;
   }
 
@@ -183,8 +181,6 @@ class LoginForm extends React.Component {
       signInSuccess(masterPassword);
       dataLoaded(data);
     }
-    // console.log(masterPassword);
-    // console.log('open data', data);
   }
 
   onSubmit = (e) => {
@@ -209,8 +205,6 @@ class LoginForm extends React.Component {
         signInRequest();
         signInSuccess(masterPassword);
         setFileName('NewFile.txt');
-
-        // console.log(masterPassword);
         break;
 
       default:
