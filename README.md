@@ -2,7 +2,7 @@
 
 * For implementation used:
     * **React, Redux**;
-    * **Create React App** as an app starter;
+    * **[Create React App](https://github.com/facebook/create-react-app)** as an app starter;
     * **CryptoJS** for encrypting and decrypting data;
     * **Travis-CI**;
     * **Github pages**.
