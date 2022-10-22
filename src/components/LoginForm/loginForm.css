@@ -91,12 +91,26 @@
 }
 
 .open__field-wrap {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
   flex-shrink: 0;
   margin-bottom: .5em;
+}
+
+.open__field-keyboard-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  font-size: 2em !important;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.open__field-keyboard-icon:hover, .open__field-keyboard-icon--active {
+  color: var(--action-color);
 }
 
 .open input[type=password].open__field[readonly] {
@@ -113,6 +127,7 @@
   font-size: 2em;
   margin-bottom: 0;
   width: 38vw;
+  padding-right: 45px;
 }
 
 input:not([type]), input[type=password], input[type=text], textarea {
@@ -230,4 +245,37 @@ button, input, optgroup, select, textarea {
   left: 27px;
   color: var(--disabled-color);
   font-weight: 700;
+}
+
+.simple-keyboard {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  max-width: 850px;
+}
+
+.simple-keyboard.custom-theme {
+  background-color: var(--login-icons-hover-bg);
+  border-radius: 0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.simple-keyboard.custom-theme .hg-button {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-color);
+  color: var(--text-color);
+  border: none;
+}
+
+.simple-keyboard.custom-theme .hg-button:active {
+  background: var(--login-icons-hover-bg);
+}
+
+#root .simple-keyboard.custom-theme + .simple-keyboard-preview {
+  background: var(--login-icons-hover-bg);
 }

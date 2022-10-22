@@ -2,14 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signInRequest, signInSuccess, signInError} from '../../actions/signin/actions';
 import { openGenerator, closeGenerator } from '../../actions/generator/actions';
-import {dataLoaded, dataRequested} from "../../actions/data/actions";
-import {setFileName} from "../../actions/fileActions/actions";
-import {decryptData} from "../../services/crypt";
+import { dataLoaded, dataRequested } from "../../actions/data/actions";
+import { setFileName } from "../../actions/fileActions/actions";
+import { decryptData } from "../../services/crypt";
 import { toast, ToastContainer } from 'react-toastify';
 import { LocalStorageService }  from '../../services';
+import Keyboard from "react-simple-keyboard";
 import {FormButtons} from "../FormButtons";
 import 'react-toastify/dist/ReactToastify.css';
 import {Switcher} from "../Switcher";
+import 'react-simple-keyboard/build/css/index.css';
 import './loginForm.css';
 
 class LoginForm extends React.Component {
@@ -23,6 +25,9 @@ class LoginForm extends React.Component {
       isAuthorized: false,
       fileContents: '',
       failedAttempts: 0,
+      focusedInput: null,
+      keyboardLayout: 'default',
+      isKeyboardOpened: false,
       remainingBlockingTime: 60000,
       UT: null,
       minutes: 3,
@@ -81,6 +86,45 @@ class LoginForm extends React.Component {
     this.setState({
       [target.name]: target.value,
     });
+  };
+
+  handleInputFocus = ({ target }) => {
+    this.setState((prevState) => {
+      if (prevState.focusedInput !== target.name) {
+        return {
+          focusedInput: target.name,
+          isKeyboardOpened: false,
+        };
+      } else {
+        return {
+          focusedInput: target.name,
+        };
+      }
+    });
+  };
+
+  handleInputBlur = () => {
+    this.setState({
+      focusedInput: null,
+    });
+  };
+
+  onKeyPress = (button) => {
+    if (button === "{shift}" || button === "{lock}") this.handleShift();
+  };
+
+  handleShift = () => {
+    const layoutName = this.state.keyboardLayout;
+
+    this.setState({
+      keyboardLayout: layoutName === 'default' ? 'shift' : 'default',
+    });
+  };
+
+  toggleVirtualKeyboard = (name) => {
+    this.setState((prevState) => ({
+      [name]: !prevState[name],
+    }));
   };
 
   onButtonChange = (button) => {
@@ -241,10 +285,11 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { minutes, seconds, masterPassword, secretPhrase } = this.state;
+    const { minutes, seconds, masterPassword, secretPhrase, isKeyboardOpened, focusedInput } = this.state;
     const isFormFilled = !!masterPassword.length && !!secretPhrase.length;
 
     return (
+      <>
         <form className="open" onSubmit={this.onSubmit}>
           <Switcher isFooter={false}/>
           <FormButtons onButtonChange={this.onButtonChange}
@@ -263,13 +308,50 @@ class LoginForm extends React.Component {
               <input className="open__field" name="masterPassword" type="password" size="30" autoComplete="new-password" minLength="6"
                      maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть пароль' : 'Enter password'}`} readOnly="" tabIndex="23" required
                      onChange={this.onChange} value={this.state.masterPassword}
+                     onFocus={this.handleInputFocus}
               />
+
+              <i className={`fa fa-keyboard-o open__field-keyboard-icon ${(focusedInput === 'masterPassword' && isKeyboardOpened) && 'open__field-keyboard-icon--active'}`}
+                 onClick={() => {
+                   this.handleInputFocus({ target: { name: 'masterPassword' }})
+                   this.toggleVirtualKeyboard('isKeyboardOpened');
+                 }}
+              />
+
+              {isKeyboardOpened && focusedInput === 'masterPassword' && (
+                <Keyboard
+                  keyboardRef={r => (this.keyboard = r)}
+                  layoutName={this.state.keyboardLayout}
+                  theme={"hg-theme-default custom-theme"}
+                  onChange={(input) => this.onChange({ target: { value: input, name: 'masterPassword' }})}
+                  onKeyPress={this.onKeyPress}
+                />
+              )}
             </div>
             <div className="open__field-wrap">
               <input className="open__field" name="secretPhrase" type="password" size="30" autoComplete="new-password" minLength="6"
                      maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть секретну фразу' : 'Enter secret phrase'}`} readOnly="" tabIndex="2" required
                      onChange={this.onChange} value={this.state.secretPhrase}
+                     onFocus={this.handleInputFocus}
               />
+
+              <i className={`fa fa-keyboard-o open__field-keyboard-icon ${(focusedInput === 'secretPhrase' && isKeyboardOpened) && 'open__field-keyboard-icon--active'}`}
+                 onClick={() => {
+                   this.handleInputFocus({ target: { name: 'secretPhrase' }})
+                   this.toggleVirtualKeyboard('isKeyboardOpened');
+                 }}
+              />
+
+              {isKeyboardOpened && focusedInput === 'secretPhrase' && (
+                <Keyboard
+                  keyboardRef={r => (this.keyboard = r)}
+                  layoutName={this.state.keyboardLayout}
+                  theme={"hg-theme-default custom-theme"}
+                  onChange={(input) => this.onChange({ target: { value: input, name: 'secretPhrase' }})}
+                  onKeyPress={this.onKeyPress}
+                />
+              )}
+
               <button className={`open__field-enter-btn ${isFormFilled && 'open__field-enter-btn--filled'}`} type="submit">
                 <i className="fa fa-level-down rotate-90 open__field-enter-btn-icon-enter"/>
                 <i className="fa fa-fingerprint open__field-enter-btn-icon-touch-id"/>
@@ -288,7 +370,8 @@ class LoginForm extends React.Component {
             pauseOnHover
           />
         </form>
-    )
+      </>
+    );
   }
 }
 
