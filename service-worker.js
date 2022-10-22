@@ -10,7 +10,7 @@ if (typeof importScripts === "function") {
 
     /* injection point for manifest files.  */
     // eslint-disable-next-line no-restricted-globals
-    workbox.precaching.precacheAndRoute([{"revision":"cf58501c53267b719c0481ef587a6cf5","url":"index.html"},{"revision":"a017fe151647ea759ff7b794c12c5050","url":"static/css/2.f96985a0.chunk.css"},{"revision":"287cae3d3c57a2c855d90647d63e6380","url":"static/css/main.51d0d70e.chunk.css"},{"revision":"ee0a4293c63ae01dc3e68294bd45f746","url":"static/js/2.7cdd9858.chunk.js"},{"revision":"94f90f78b2b0153e2fb2e443eead5320","url":"static/js/main.eee8f31f.chunk.js"},{"revision":"0d53a4b4eba8a5face87f7ae4490c110","url":"static/js/runtime-main.1fe1ad4a.js"}]);
+    workbox.precaching.precacheAndRoute([{"revision":"6dd2261aad3fee6c0d8c3264e4ff0e32","url":"index.html"},{"revision":"dcc808a51e5a97ee25b6d73c17859ee7","url":"static/css/2.13524cd1.chunk.css"},{"revision":"c4d91f18d5894134b223b72b6e5d4433","url":"static/css/main.e2c465b3.chunk.css"},{"revision":"6c01fd56075e0bd0fb7a1df57a0f19fe","url":"static/js/2.d0063399.chunk.js"},{"revision":"aa7a5ea049e6c6b32f12f89d60cb5ab0","url":"static/js/main.98b52f79.chunk.js"},{"revision":"0d53a4b4eba8a5face87f7ae4490c110","url":"static/js/runtime-main.1fe1ad4a.js"}]);
 
     /* custom cache rules */
     workbox.routing.registerRoute(
