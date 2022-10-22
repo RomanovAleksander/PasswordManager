@@ -19,6 +19,7 @@ class LoginForm extends React.Component {
     this.state = {
       button: 'new',
       masterPassword: '',
+      secretPhrase: '',
       isAuthorized: false,
       fileContents: '',
       failedAttempts: 0,
@@ -78,7 +79,7 @@ class LoginForm extends React.Component {
 
   onChange = ({ target }) => {
     this.setState({
-      masterPassword: target.value
+      [target.name]: target.value,
     });
   };
 
@@ -114,17 +115,18 @@ class LoginForm extends React.Component {
     return diffMs;
   }
 
-  checkCypher = (data, masterPassword) => {
+  checkCypher = (data, masterPassword, secretPhrase) => {
     const { signInRequest, signInSuccess, signInError, dataLoaded, isUA } = this.props;
     signInRequest();
 
-    if (data === 'Invalid Password' || !data) {
+    if (data === 'Invalid Data' || !data) {
       this.setState({
-        masterPassword: ''
+        masterPassword: '',
+        secretPhrase: '',
       });
-      signInError('Invalid Password');
+      signInError('Invalid Data');
       this.setState({failedAttempts: this.state.failedAttempts + 1}, () => {
-        toast.error(`${isUA ? `Невірний пароль, залишилось ${5 - this.state.failedAttempts} спроби` : `Invalid password, ${5 - this.state.failedAttempts} attempts left`}`, {
+        toast.error(`${isUA ? `Невірні дані, залишилось ${5 - this.state.failedAttempts} спроби` : `Invalid Data, ${5 - this.state.failedAttempts} attempts left`}`, {
           position: 'top-center',
           autoClose: 1000,
           hideProgressBar: true,
@@ -167,7 +169,7 @@ class LoginForm extends React.Component {
 
         LocalStorageService.setItem('UT', unlockTime.toString());
 
-        toast.error(`${isUA ? `Можливість введення паролю заблоковано на 3 хвилини` : 'The ability to enter the password is blocked for 3 minutes'}`, {
+        toast.error(`${isUA ? `Можливість введення даних заблокована на 3 хвилини` : 'The ability to enter the data is blocked for 3 minutes'}`, {
           position: 'top-center',
           autoClose: 3000,
           hideProgressBar: true,
@@ -178,14 +180,14 @@ class LoginForm extends React.Component {
         });
       }
     } else {
-      signInSuccess(masterPassword);
+      signInSuccess(masterPassword, secretPhrase);
       dataLoaded(data);
     }
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { masterPassword } = this.state;
+    const { masterPassword, secretPhrase } = this.state;
     const { signInRequest, signInSuccess, setFileName } = this.props;
 
     const { button } = this.state;
@@ -195,15 +197,15 @@ class LoginForm extends React.Component {
         const localStorageData = LocalStorageService.getItem('Data');
         let data = null;
         if (localStorageData) {
-          data = decryptData(localStorageData, masterPassword);
-          this.checkCypher(data, masterPassword);
+          data = decryptData(localStorageData, masterPassword, secretPhrase);
+          this.checkCypher(data, masterPassword, secretPhrase);
         } else {
           this.upload();
         }
         break;
       case 'new':
         signInRequest();
-        signInSuccess(masterPassword);
+        signInSuccess(masterPassword, secretPhrase);
         setFileName('NewFile.txt');
         break;
 
@@ -229,8 +231,8 @@ class LoginForm extends React.Component {
       this.props.setFileName(fileName);
       LocalStorageService.setItem('Data', fileContents);
 
-      const data = decryptData(fileContents, this.state.masterPassword);
-      this.checkCypher(data, this.state.masterPassword);
+      const data = decryptData(fileContents, this.state.masterPassword, this.state.secretPhrase);
+      this.checkCypher(data, this.state.masterPassword, this.state.secretPhrase);
     }
 
     fileloaded = fileloaded.bind(this);
@@ -239,7 +241,8 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { minutes, seconds } = this.state;
+    const { minutes, seconds, masterPassword, secretPhrase } = this.state;
+    const isFormFilled = !!masterPassword.length && !!secretPhrase.length;
 
     return (
         <form className="open" onSubmit={this.onSubmit}>
@@ -256,14 +259,20 @@ class LoginForm extends React.Component {
                  ref={e => this.dofileUpload = e}
           />
           <div className="open__pass-area">
-            <div className="open__pass-field-wrap">
-              <input className="open__pass-input" name="password" type="password" size="30" autoComplete="new-password" minLength="6"
+            <div className="open__field-wrap">
+              <input className="open__field" name="masterPassword" type="password" size="30" autoComplete="new-password" minLength="6"
                      maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть пароль' : 'Enter password'}`} readOnly="" tabIndex="23" required
                      onChange={this.onChange} value={this.state.masterPassword}
               />
-              <button className="open__pass-enter-btn" type="submit">
-                <i className="fa fa-level-down rotate-90 open__pass-enter-btn-icon-enter"/>
-                <i className="fa fa-fingerprint open__pass-enter-btn-icon-touch-id"/>
+            </div>
+            <div className="open__field-wrap">
+              <input className="open__field" name="secretPhrase" type="password" size="30" autoComplete="new-password" minLength="6"
+                     maxLength="1024" placeholder={`${ this.props.isUA ? 'Введіть секретну фразу' : 'Enter secret phrase'}`} readOnly="" tabIndex="2" required
+                     onChange={this.onChange} value={this.state.secretPhrase}
+              />
+              <button className={`open__field-enter-btn ${isFormFilled && 'open__field-enter-btn--filled'}`} type="submit">
+                <i className="fa fa-level-down rotate-90 open__field-enter-btn-icon-enter"/>
+                <i className="fa fa-fingerprint open__field-enter-btn-icon-touch-id"/>
               </button>
             </div>
           </div>

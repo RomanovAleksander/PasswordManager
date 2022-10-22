@@ -21,8 +21,8 @@ class UploadAction extends React.Component {
   }
 
   download = (isLogOut) => {
-    const {data, masterPassword, dataRequested, userSignOut} = this.props;
-    const encryptedData = encryptData(data, masterPassword);
+    const {data, masterPassword, secretPhrase, dataRequested, userSignOut} = this.props;
+    const encryptedData = encryptData(data, masterPassword, secretPhrase);
 
     const blob = new Blob([encryptedData]);
     const fileDownloadUrl = URL.createObjectURL(blob);
@@ -79,6 +79,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.dataList.data,
     masterPassword: state.authorization.masterPassword,
+    secretPhrase: state.authorization.secretPhrase,
     fileName: state.file.fileName,
     isSave: state.file.isSave,
     isConfirmOpen: state.file.isConfirmOpen,

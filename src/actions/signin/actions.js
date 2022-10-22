@@ -11,10 +11,10 @@ const signInRequest = () => {
   }
 };
 
-const signInSuccess = (user) => {
+const signInSuccess = (masterPassword, secretPhrase) => {
   return {
     type: SIGN_IN_SUCCESS,
-    payload: user
+    payload: { masterPassword, secretPhrase }
   }
 };
 

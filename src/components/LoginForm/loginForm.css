@@ -90,7 +90,7 @@
   position: relative;
 }
 
-.open__pass-field-wrap {
+.open__field-wrap {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -99,17 +99,17 @@
   margin-bottom: .5em;
 }
 
-.open input[type=password].open__pass-input[readonly] {
+.open input[type=password].open__field[readonly] {
   cursor: pointer;
 }
 
 @media (max-width: 1000px) {
-  .open input[type=password].open__pass-input {
+  .open input[type=password].open__field {
     width: 16em;
   }
 }
 
-.open input[type=password].open__pass-input {
+.open input[type=password].open__field {
   font-size: 2em;
   margin-bottom: 0;
   width: 38vw;
@@ -153,19 +153,29 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-.open__pass-enter-btn {
+.open__field-enter-btn {
   display: block;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
-.open__pass-enter-btn:hover {
+.open__field-enter-btn--filled i {
+  color: var(--open-icon-color);
+  transition: 0.15s ease;
+}
+
+.open__field-enter-btn--filled:hover i {
+  color: var(--muted-color);
+  transition: 0.15s ease;
+}
+
+.open__field-enter-btn:hover {
   color: var(--login-icons-hover-cl);
   transition: 0.15s ease;
 }
 
-.open__pass-enter-btn, .open__pass-opening-icon {
+.open__field-enter-btn, .open__pass-opening-icon {
   padding: .6em 1.5em;
   position: absolute;
   left: 100%;
@@ -175,11 +185,11 @@ button, input, optgroup, select, textarea {
   height: 3.2em;
 }
 
-.open__pass-enter-btn>i, .open__pass-opening-icon>i {
+.open__field-enter-btn>i, .open__pass-opening-icon>i {
   font-size: 3em;
   line-height: 1;
 }
-.open__pass-enter-btn-icon-enter {
+.open__field-enter-btn-icon-enter {
   display: block;
 }
 .fa.rotate-90:before, .rotate-90 {

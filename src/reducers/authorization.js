@@ -8,6 +8,7 @@ import { LocalStorageService } from '../services';
 
 const initialState = {
   masterPassword: null,
+  secretPhrase: null,
   isAuthorized: false,
   loading: false,
   error: null
@@ -34,9 +35,11 @@ export const authorization = (state, action) => {
         error: null
       };
     case SIGN_IN_SUCCESS:
+      const { masterPassword, secretPhrase } = payload;
       return {
         ...state,
-        masterPassword: payload,
+        masterPassword: masterPassword,
+        secretPhrase: secretPhrase,
         isAuthorized: true,
         loading: false,
         error: null
